@@ -1,0 +1,2024 @@
+{
+  "name": "difficulty-select",
+  "platform": "applovin",
+  "talon_panel": false,
+  "canvas": {
+    "portrait": {
+      "width": 1080,
+      "height": 1920
+    },
+    "landscape": {
+      "width": 1920,
+      "height": 1080
+    }
+  },
+  "scales": {
+    "card": {
+      "portrait": 0.35,
+      "landscape": 0.27
+    },
+    "talon": {
+      "portrait": 1.2,
+      "landscape": 1.1
+    }
+  },
+  "background": {
+    "color": "#142a6c",
+    "layers": [
+      {
+        "id": "room",
+        "image": "the-one-ring-main/playables/royal/assets/images/main_bg.webp",
+        "image_landscape": "the-one-ring-main/playables/royal/assets/images/main_bg_landscape.webp",
+        "fit": "none",
+        "depth": 0,
+        "portrait": {
+          "x": 539,
+          "y": 960,
+          "scale": 1.25
+        },
+        "landscape": {
+          "x": 960,
+          "y": 540,
+          "scale": 1.25
+        },
+        "layouts": {
+          "start": {
+            "portrait": {
+              "x": 539,
+              "y": 960,
+              "scale": 1.25
+            },
+            "landscape": {
+              "x": 960,
+              "y": 540,
+              "scale": 1.25
+            }
+          },
+          "easy": {
+            "portrait": {
+              "x": 539,
+              "y": 960,
+              "scale": 1.25
+            },
+            "landscape": {
+              "x": 960,
+              "y": 540,
+              "scale": 1.25
+            }
+          },
+          "end": {
+            "portrait": {
+              "x": 539,
+              "y": 960,
+              "scale": 1.25
+            },
+            "landscape": {
+              "x": 960,
+              "y": 540,
+              "scale": 1.25
+            }
+          },
+          "medium": {
+            "portrait": {
+              "x": 539,
+              "y": 960,
+              "scale": 1.25
+            },
+            "landscape": {
+              "x": 960,
+              "y": 540,
+              "scale": 1.25
+            }
+          },
+          "hard": {
+            "portrait": {
+              "x": 539,
+              "y": 960,
+              "scale": 1.25
+            },
+            "landscape": {
+              "x": 960,
+              "y": 540,
+              "scale": 1.25
+            }
+          }
+        }
+      },
+      {
+        "id": "table",
+        "image": "the-one-ring-main/playables/royal/assets/images/table_bg.webp",
+        "fit": "none",
+        "depth": 1,
+        "portrait": {
+          "x": 540,
+          "y": 1660,
+          "scale": 0.95
+        },
+        "landscape": {
+          "x": 960,
+          "y": 980,
+          "scale": 0.95
+        },
+        "layouts": {
+          "start": {
+            "portrait": {
+              "x": 540,
+              "y": 1660,
+              "scale": 0.95
+            },
+            "landscape": {
+              "x": 960,
+              "y": 980,
+              "scale": 0.95
+            }
+          },
+          "easy": {
+            "portrait": {
+              "x": 540,
+              "y": 1660,
+              "scale": 0.95
+            },
+            "landscape": {
+              "x": 960,
+              "y": 980,
+              "scale": 0.95
+            }
+          },
+          "end": {
+            "portrait": {
+              "x": 540,
+              "y": 1660,
+              "scale": 0.95
+            },
+            "landscape": {
+              "x": 960,
+              "y": 980,
+              "scale": 0.95
+            }
+          },
+          "medium": {
+            "portrait": {
+              "x": 540,
+              "y": 1660,
+              "scale": 0.95
+            },
+            "landscape": {
+              "x": 960,
+              "y": 980,
+              "scale": 0.95
+            }
+          },
+          "hard": {
+            "portrait": {
+              "x": 540,
+              "y": 1660,
+              "scale": 0.95
+            },
+            "landscape": {
+              "x": 960,
+              "y": 980,
+              "scale": 0.95
+            }
+          }
+        }
+      },
+      {
+        "id": "cta2",
+        "image": "engine/assets/cta/play_now.webp",
+        "fit": "none",
+        "depth": 90,
+        "cta": true,
+        "portrait": {
+          "x": 540,
+          "y": 1574,
+          "scale": 0.9
+        },
+        "landscape": {
+          "x": 960,
+          "y": 886,
+          "scale": 0.6
+        },
+        "layouts": {
+          "start": {
+            "landscape": {
+              "x": 1775,
+              "y": 83,
+              "scale": 0.4
+            },
+            "portrait": {
+              "x": 935,
+              "y": 89,
+              "scale": 0.4
+            }
+          },
+          "easy": {
+            "portrait": {
+              "x": 935,
+              "y": 89,
+              "scale": 0.4
+            },
+            "landscape": {
+              "x": 1775,
+              "y": 83,
+              "scale": 0.4
+            }
+          },
+          "end": {
+            "portrait": {
+              "x": 935,
+              "y": 1574,
+              "scale": 0.9
+            }
+          },
+          "medium": {
+            "portrait": {
+              "x": 935,
+              "y": 89,
+              "scale": 0.4
+            },
+            "landscape": {
+              "x": 1775,
+              "y": 83,
+              "scale": 0.4
+            }
+          },
+          "hard": {
+            "portrait": {
+              "x": 935,
+              "y": 89,
+              "scale": 0.4
+            },
+            "landscape": {
+              "x": 1775,
+              "y": 83,
+              "scale": 0.4
+            }
+          }
+        },
+        "scenes": [
+          "start",
+          "easy",
+          "medium",
+          "hard"
+        ]
+      },
+      {
+        "id": "cta3",
+        "image": "data:image/png;base64,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",
+        "fit": "none",
+        "depth": 90,
+        "cta": true,
+        "portrait": {
+          "x": 540,
+          "y": 1574,
+          "scale": 0.9
+        },
+        "landscape": {
+          "x": 960,
+          "y": 886,
+          "scale": 0.6
+        },
+        "layouts": {
+          "start": {
+            "landscape": {
+              "x": 135,
+              "y": 75,
+              "scale": 0.8
+            },
+            "portrait": {
+              "x": 160,
+              "y": 85,
+              "scale": 1
+            }
+          },
+          "easy": {
+            "landscape": {
+              "x": 135,
+              "y": 75,
+              "scale": 0.8
+            },
+            "portrait": {
+              "x": 160,
+              "y": 85,
+              "scale": 1
+            }
+          },
+          "medium": {
+            "landscape": {
+              "x": 135,
+              "y": 75,
+              "scale": 0.8
+            },
+            "portrait": {
+              "x": 160,
+              "y": 85,
+              "scale": 1
+            }
+          },
+          "hard": {
+            "landscape": {
+              "x": 135,
+              "y": 75,
+              "scale": 0.8
+            },
+            "portrait": {
+              "x": 160,
+              "y": 85,
+              "scale": 1
+            }
+          },
+          "end": {
+            "landscape": {
+              "x": 135,
+              "y": 75,
+              "scale": 0.8
+            },
+            "portrait": {
+              "x": 554,
+              "y": 115,
+              "scale": 1
+            }
+          }
+        }
+      }
+    ]
+  },
+  "deck": {
+    "card_back": "the-one-ring-main/playables/master/assets/cards/Back_Card.png",
+    "talon_image": "engine/assets/talon/telon.webp"
+  },
+  "start_scene": {
+    "type": "difficulty",
+    "title": {
+      "text": ""
+    },
+    "options": [
+      {
+        "id": "easy",
+        "label": "PLAY",
+        "color": "#2ed573",
+        "portrait": {
+          "x": 540,
+          "y": 1190,
+          "scale": 0.7
+        },
+        "landscape": {
+          "x": 960,
+          "y": 670,
+          "scale": 0.6
+        }
+      }
+    ]
+  },
+  "levels": {
+    "easy": {
+      "deal": {
+        "style": "deal_curve",
+        "stagger": 70,
+        "duration": 480,
+        "curve_height": 260
+      },
+      "animation": {
+        "default": {
+          "curve_height": 150,
+          "first_duration": 400,
+          "second_duration": 300
+        },
+        "per_card": {
+          "s1": {
+            "curve_height": 300,
+            "first_duration": 600,
+            "second_duration": 300
+          },
+          "s12": {
+            "curve_height": 184,
+            "first_duration": 455,
+            "second_duration": 300
+          },
+          "s13": {
+            "curve_height": 184,
+            "first_duration": 455,
+            "second_duration": 300
+          },
+          "s2": {
+            "curve_height": 300,
+            "first_duration": 600,
+            "second_duration": 300
+          },
+          "s3": {
+            "curve_height": 299,
+            "first_duration": 599,
+            "second_duration": 300
+          },
+          "s10": {
+            "curve_height": 199,
+            "first_duration": 474,
+            "second_duration": 300
+          },
+          "s4": {
+            "curve_height": 299,
+            "first_duration": 599,
+            "second_duration": 300
+          },
+          "s11": {
+            "curve_height": 199,
+            "first_duration": 474,
+            "second_duration": 300
+          },
+          "s5": {
+            "curve_height": 246,
+            "first_duration": 533,
+            "second_duration": 300
+          },
+          "s9": {
+            "curve_height": 246,
+            "first_duration": 533,
+            "second_duration": 300
+          },
+          "s0": {
+            "curve_height": 297,
+            "first_duration": 596,
+            "second_duration": 300
+          },
+          "s14": {
+            "curve_height": 156,
+            "first_duration": 421,
+            "second_duration": 300
+          },
+          "s6": {
+            "curve_height": 239,
+            "first_duration": 524,
+            "second_duration": 300
+          },
+          "s8": {
+            "curve_height": 239,
+            "first_duration": 524,
+            "second_duration": 300
+          },
+          "s7": {
+            "curve_height": 227,
+            "first_duration": 509,
+            "second_duration": 300
+          }
+        }
+      },
+      "game_flow": {
+        "mode": "dependency",
+        "dependencies": {
+          "s1": [
+            "s3",
+            "s5",
+            "s0",
+            "s6",
+            "s7"
+          ],
+          "s12": [
+            "s10",
+            "s5",
+            "s14",
+            "s6",
+            "s7"
+          ],
+          "s13": [
+            "s11",
+            "s9",
+            "s14",
+            "s8",
+            "s7"
+          ],
+          "s2": [
+            "s4",
+            "s9",
+            "s0",
+            "s8",
+            "s7"
+          ],
+          "s3": [
+            "s5",
+            "s6"
+          ],
+          "s10": [
+            "s5",
+            "s6"
+          ],
+          "s4": [
+            "s9",
+            "s8"
+          ],
+          "s11": [
+            "s9",
+            "s8"
+          ],
+          "s5": [
+            "s6"
+          ],
+          "s9": [
+            "s8"
+          ],
+          "s0": [
+            "s6",
+            "s8",
+            "s7"
+          ],
+          "s14": [
+            "s6",
+            "s8",
+            "s7"
+          ],
+          "s6": [
+            "s7"
+          ],
+          "s8": [
+            "s7"
+          ]
+        },
+        "initially_playable": [
+          "s7"
+        ],
+        "deal_order": [
+          "s1",
+          "s12",
+          "s13",
+          "s2",
+          "s3",
+          "s10",
+          "s4",
+          "s11",
+          "s5",
+          "s9",
+          "s0",
+          "s14",
+          "s6",
+          "s8",
+          "s7"
+        ]
+      },
+      "talon": {
+        "sequence": [
+          "diamonds_a"
+        ],
+        "base": {
+          "portrait": {
+            "x": 540,
+            "y": 1497,
+            "scale": 1.2,
+            "depth": 25
+          },
+          "landscape": {
+            "x": 960,
+            "y": 896,
+            "scale": 1.1,
+            "depth": 25
+          }
+        },
+        "deck": {
+          "portrait": {
+            "x": 340,
+            "y": 1497,
+            "scale": 1.216,
+            "depth": 26
+          },
+          "landscape": {
+            "x": 800,
+            "y": 896,
+            "scale": 0.5,
+            "depth": 26
+          }
+        }
+      },
+      "cards": [
+        {
+          "id": "s0",
+          "face": "heart_4",
+          "asset": "the-one-ring-main/playables/master/assets/cards/hearts/Heart-4.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 540,
+            "y": 321,
+            "scale": 0.7,
+            "depth": 3
+          },
+          "landscape": {
+            "x": 960,
+            "y": 244,
+            "scale": 0.5,
+            "depth": 3
+          }
+        },
+        {
+          "id": "s1",
+          "face": "clubs_4",
+          "asset": "the-one-ring-main/playables/master/assets/cards/clubs/Clubs-4.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 359,
+            "y": 366,
+            "scale": 0.7,
+            "depth": 1,
+            "r": -1.309
+          },
+          "landscape": {
+            "x": 822,
+            "y": 257,
+            "scale": 0.5,
+            "depth": 1,
+            "r": -1.309
+          }
+        },
+        {
+          "id": "s2",
+          "face": "diamonds_3",
+          "asset": "the-one-ring-main/playables/master/assets/cards/diamonds/Diamonds-3.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 742,
+            "y": 371,
+            "scale": 0.7,
+            "depth": 1,
+            "r": -4.9742
+          },
+          "landscape": {
+            "x": 1098,
+            "y": 257,
+            "scale": 0.5,
+            "depth": 1,
+            "r": -4.9742
+          }
+        },
+        {
+          "id": "s3",
+          "face": "heart_2",
+          "asset": "the-one-ring-main/playables/master/assets/cards/hearts/Heart-2.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 264,
+            "y": 402,
+            "scale": 0.7,
+            "depth": 2
+          },
+          "landscape": {
+            "x": 782,
+            "y": 272,
+            "scale": 0.5,
+            "depth": 2
+          }
+        },
+        {
+          "id": "s4",
+          "face": "clubs_q",
+          "asset": "the-one-ring-main/playables/master/assets/cards/clubs/Clubs-Q.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 837,
+            "y": 407,
+            "scale": 0.7,
+            "depth": 2
+          },
+          "landscape": {
+            "x": 1138,
+            "y": 272,
+            "scale": 0.5,
+            "depth": 2
+          }
+        },
+        {
+          "id": "s5",
+          "face": "heart_a",
+          "asset": "the-one-ring-main/playables/master/assets/cards/hearts/Heart-A.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 268,
+            "y": 577,
+            "scale": 0.7,
+            "depth": 3
+          },
+          "landscape": {
+            "x": 782,
+            "y": 416,
+            "scale": 0.5,
+            "depth": 3
+          }
+        },
+        {
+          "id": "s6",
+          "face": "spades_5",
+          "asset": "the-one-ring-main/playables/master/assets/cards/spade/Spades-5.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 356,
+            "y": 577,
+            "scale": 0.7,
+            "depth": 4,
+            "r": -1.5708
+          },
+          "landscape": {
+            "x": 819,
+            "y": 416,
+            "scale": 0.5,
+            "depth": 4,
+            "r": -1.5708
+          }
+        },
+        {
+          "id": "s7",
+          "face": "clubs_2",
+          "asset": "the-one-ring-main/playables/master/assets/cards/clubs/Clubs-2.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 544,
+            "y": 565,
+            "scale": 0.7,
+            "depth": 5
+          },
+          "landscape": {
+            "x": 960,
+            "y": 416,
+            "scale": 0.5,
+            "depth": 5
+          }
+        },
+        {
+          "id": "s8",
+          "face": "spades_3",
+          "asset": "the-one-ring-main/playables/master/assets/cards/spade/Spades-3.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 753,
+            "y": 582,
+            "scale": 0.7,
+            "depth": 4,
+            "r": -1.5708
+          },
+          "landscape": {
+            "x": 1101,
+            "y": 416,
+            "scale": 0.5,
+            "depth": 4,
+            "r": -1.5708
+          }
+        },
+        {
+          "id": "s9",
+          "face": "spades_4",
+          "asset": "the-one-ring-main/playables/master/assets/cards/spade/Spades-4.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 841,
+            "y": 582,
+            "scale": 0.7,
+            "depth": 3
+          },
+          "landscape": {
+            "x": 1138,
+            "y": 416,
+            "scale": 0.5,
+            "depth": 3
+          }
+        },
+        {
+          "id": "s10",
+          "face": "heart_k",
+          "asset": "the-one-ring-main/playables/master/assets/cards/hearts/Heart-K.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 266,
+            "y": 767,
+            "scale": 0.7,
+            "depth": 2
+          },
+          "landscape": {
+            "x": 782,
+            "y": 560,
+            "scale": 0.5,
+            "depth": 2
+          }
+        },
+        {
+          "id": "s11",
+          "face": "diamonds_2",
+          "asset": "the-one-ring-main/playables/master/assets/cards/diamonds/Diamonds-2.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 839,
+            "y": 772,
+            "scale": 0.7,
+            "depth": 2
+          },
+          "landscape": {
+            "x": 1138,
+            "y": 560,
+            "scale": 0.5,
+            "depth": 2
+          }
+        },
+        {
+          "id": "s12",
+          "face": "spades_a",
+          "asset": "the-one-ring-main/playables/master/assets/cards/spade/Spades-A.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 361,
+            "y": 803,
+            "scale": 0.7,
+            "depth": 1,
+            "r": -4.9742
+          },
+          "landscape": {
+            "x": 822,
+            "y": 574,
+            "scale": 0.5,
+            "depth": 1,
+            "r": -4.9742
+          }
+        },
+        {
+          "id": "s13",
+          "face": "spades_k",
+          "asset": "the-one-ring-main/playables/master/assets/cards/spade/Spades-K.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 744,
+            "y": 808,
+            "scale": 0.7,
+            "depth": 1,
+            "r": -1.309
+          },
+          "landscape": {
+            "x": 1098,
+            "y": 574,
+            "scale": 0.5,
+            "depth": 1,
+            "r": -1.309
+          }
+        },
+        {
+          "id": "s14",
+          "face": "clubs_3",
+          "asset": "the-one-ring-main/playables/master/assets/cards/clubs/Clubs-3.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 542,
+            "y": 824,
+            "scale": 0.7,
+            "depth": 3
+          },
+          "landscape": {
+            "x": 960,
+            "y": 588,
+            "scale": 0.5,
+            "depth": 3
+          }
+        }
+      ],
+      "telon": {
+        "portrait": {
+          "x": 440,
+          "y": 1497,
+          "scale": 2.5,
+          "depth": 9
+        },
+        "landscape": {
+          "x": 880,
+          "y": 896,
+          "scale": 2.5,
+          "depth": 9
+        }
+      }
+    },
+    "medium": {
+      "deal": {
+        "style": "fade",
+        "stagger": 45,
+        "duration": 360
+      },
+      "animation": {
+        "default": {
+          "curve_height": 150,
+          "first_duration": 400,
+          "second_duration": 300
+        },
+        "per_card": {
+          "s1": {
+            "curve_height": 300,
+            "first_duration": 600,
+            "second_duration": 300
+          },
+          "s12": {
+            "curve_height": 184,
+            "first_duration": 455,
+            "second_duration": 300
+          },
+          "s13": {
+            "curve_height": 184,
+            "first_duration": 455,
+            "second_duration": 300
+          },
+          "s2": {
+            "curve_height": 300,
+            "first_duration": 600,
+            "second_duration": 300
+          },
+          "s3": {
+            "curve_height": 299,
+            "first_duration": 599,
+            "second_duration": 300
+          },
+          "s10": {
+            "curve_height": 199,
+            "first_duration": 474,
+            "second_duration": 300
+          },
+          "s4": {
+            "curve_height": 299,
+            "first_duration": 599,
+            "second_duration": 300
+          },
+          "s11": {
+            "curve_height": 199,
+            "first_duration": 474,
+            "second_duration": 300
+          },
+          "s5": {
+            "curve_height": 246,
+            "first_duration": 533,
+            "second_duration": 300
+          },
+          "s9": {
+            "curve_height": 246,
+            "first_duration": 533,
+            "second_duration": 300
+          },
+          "s0": {
+            "curve_height": 297,
+            "first_duration": 596,
+            "second_duration": 300
+          },
+          "s14": {
+            "curve_height": 156,
+            "first_duration": 421,
+            "second_duration": 300
+          },
+          "s6": {
+            "curve_height": 239,
+            "first_duration": 524,
+            "second_duration": 300
+          },
+          "s8": {
+            "curve_height": 239,
+            "first_duration": 524,
+            "second_duration": 300
+          },
+          "s7": {
+            "curve_height": 227,
+            "first_duration": 509,
+            "second_duration": 300
+          }
+        }
+      },
+      "game_flow": {
+        "mode": "dependency",
+        "dependencies": {
+          "s1": [
+            "s3",
+            "s5",
+            "s0",
+            "s6",
+            "s7"
+          ],
+          "s12": [
+            "s10",
+            "s5",
+            "s14",
+            "s6",
+            "s7"
+          ],
+          "s13": [
+            "s11",
+            "s9",
+            "s14",
+            "s8",
+            "s7"
+          ],
+          "s2": [
+            "s4",
+            "s9",
+            "s0",
+            "s8",
+            "s7"
+          ],
+          "s3": [
+            "s5",
+            "s6"
+          ],
+          "s10": [
+            "s5",
+            "s6"
+          ],
+          "s4": [
+            "s9",
+            "s8"
+          ],
+          "s11": [
+            "s9",
+            "s8"
+          ],
+          "s5": [
+            "s6"
+          ],
+          "s9": [
+            "s8"
+          ],
+          "s0": [
+            "s6",
+            "s8",
+            "s7"
+          ],
+          "s14": [
+            "s6",
+            "s8",
+            "s7"
+          ],
+          "s6": [
+            "s7"
+          ],
+          "s8": [
+            "s7"
+          ]
+        },
+        "initially_playable": [
+          "s7"
+        ],
+        "deal_order": [
+          "s1",
+          "s12",
+          "s13",
+          "s2",
+          "s3",
+          "s10",
+          "s4",
+          "s11",
+          "s5",
+          "s9",
+          "s0",
+          "s14",
+          "s6",
+          "s8",
+          "s7"
+        ]
+      },
+      "talon": {
+        "sequence": [
+          "spades_6",
+          "diamonds_5",
+          "heart_8",
+          "spades_2",
+          "clubs_5",
+          "heart_9",
+          "heart_7",
+          "heart_a",
+          "spades_7"
+        ],
+        "base": {
+          "portrait": {
+            "x": 540,
+            "y": 1497,
+            "scale": 1.2,
+            "depth": 25
+          },
+          "landscape": {
+            "x": 960,
+            "y": 896,
+            "scale": 1.1,
+            "depth": 25
+          }
+        },
+        "deck": {
+          "portrait": {
+            "x": 340,
+            "y": 1497,
+            "scale": 1.216,
+            "depth": 26
+          },
+          "landscape": {
+            "x": 800,
+            "y": 896,
+            "scale": 0.791,
+            "depth": 26
+          }
+        }
+      },
+      "cards": [
+        {
+          "id": "s0",
+          "face": "spades_4",
+          "asset": "the-one-ring-main/playables/master/assets/cards/spade/Spades-4.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 540,
+            "y": 332.1,
+            "scale": 0.62,
+            "depth": 3
+          },
+          "landscape": {
+            "x": 960,
+            "y": 182.5,
+            "scale": 0.569,
+            "depth": 3
+          }
+        },
+        {
+          "id": "s1",
+          "face": "spades_5",
+          "asset": "the-one-ring-main/playables/master/assets/cards/spade/Spades-5.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 368.2,
+            "y": 348.9,
+            "scale": 0.62,
+            "depth": 1,
+            "r": -1.309
+          },
+          "landscape": {
+            "x": 802.6,
+            "y": 197.6,
+            "scale": 0.569,
+            "depth": 1,
+            "r": -1.309
+          }
+        },
+        {
+          "id": "s2",
+          "face": "heart_6",
+          "asset": "the-one-ring-main/playables/master/assets/cards/hearts/Heart-6.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 711.8,
+            "y": 348.9,
+            "scale": 0.62,
+            "depth": 1,
+            "r": -4.9742
+          },
+          "landscape": {
+            "x": 1117.4,
+            "y": 197.6,
+            "scale": 0.569,
+            "depth": 1,
+            "r": -4.9742
+          }
+        },
+        {
+          "id": "s3",
+          "face": "heart_2",
+          "asset": "the-one-ring-main/playables/master/assets/cards/hearts/Heart-2.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 319.7,
+            "y": 367.3,
+            "scale": 0.62,
+            "depth": 2
+          },
+          "landscape": {
+            "x": 758,
+            "y": 214.1,
+            "scale": 0.569,
+            "depth": 2
+          }
+        },
+        {
+          "id": "s4",
+          "face": "clubs_8",
+          "asset": "the-one-ring-main/playables/master/assets/cards/clubs/Clubs-8.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 760.3,
+            "y": 367.3,
+            "scale": 0.62,
+            "depth": 2
+          },
+          "landscape": {
+            "x": 1162,
+            "y": 214.1,
+            "scale": 0.569,
+            "depth": 2
+          }
+        },
+        {
+          "id": "s5",
+          "face": "clubs_4",
+          "asset": "the-one-ring-main/playables/master/assets/cards/clubs/Clubs-4.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 319.7,
+            "y": 545.2,
+            "scale": 0.62,
+            "depth": 3
+          },
+          "landscape": {
+            "x": 758,
+            "y": 378,
+            "scale": 0.569,
+            "depth": 3
+          }
+        },
+        {
+          "id": "s6",
+          "face": "heart_5",
+          "asset": "the-one-ring-main/playables/master/assets/cards/hearts/Heart-5.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 364.6,
+            "y": 545.2,
+            "scale": 0.62,
+            "depth": 4,
+            "r": -1.5708
+          },
+          "landscape": {
+            "x": 799,
+            "y": 378,
+            "scale": 0.569,
+            "depth": 4,
+            "r": -1.5708
+          }
+        },
+        {
+          "id": "s7",
+          "face": "clubs_6",
+          "asset": "the-one-ring-main/playables/master/assets/cards/clubs/Clubs-6.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 540,
+            "y": 545.2,
+            "scale": 0.62,
+            "depth": 5
+          },
+          "landscape": {
+            "x": 960,
+            "y": 378,
+            "scale": 0.569,
+            "depth": 5
+          }
+        },
+        {
+          "id": "s8",
+          "face": "clubs_3",
+          "asset": "the-one-ring-main/playables/master/assets/cards/clubs/Clubs-3.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 715.4,
+            "y": 545.2,
+            "scale": 0.62,
+            "depth": 4,
+            "r": -1.5708
+          },
+          "landscape": {
+            "x": 1121,
+            "y": 378,
+            "scale": 0.569,
+            "depth": 4,
+            "r": -1.5708
+          }
+        },
+        {
+          "id": "s9",
+          "face": "spades_8",
+          "asset": "the-one-ring-main/playables/master/assets/cards/spade/Spades-8.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 760.3,
+            "y": 545.2,
+            "scale": 0.62,
+            "depth": 3
+          },
+          "landscape": {
+            "x": 1162,
+            "y": 378,
+            "scale": 0.569,
+            "depth": 3
+          }
+        },
+        {
+          "id": "s10",
+          "face": "diamonds_3",
+          "asset": "the-one-ring-main/playables/master/assets/cards/diamonds/Diamonds-3.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 319.7,
+            "y": 723.7,
+            "scale": 0.62,
+            "depth": 2
+          },
+          "landscape": {
+            "x": 758,
+            "y": 541.2,
+            "scale": 0.569,
+            "depth": 2
+          }
+        },
+        {
+          "id": "s11",
+          "face": "spades_9",
+          "asset": "the-one-ring-main/playables/master/assets/cards/spade/Spades-9.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 760.3,
+            "y": 723.7,
+            "scale": 0.62,
+            "depth": 2
+          },
+          "landscape": {
+            "x": 1162,
+            "y": 541.2,
+            "scale": 0.569,
+            "depth": 2
+          }
+        },
+        {
+          "id": "s12",
+          "face": "diamonds_7",
+          "asset": "the-one-ring-main/playables/master/assets/cards/diamonds/Diamonds-7.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 368.2,
+            "y": 742.1,
+            "scale": 0.62,
+            "depth": 1,
+            "r": -4.9742
+          },
+          "landscape": {
+            "x": 802.6,
+            "y": 558.4,
+            "scale": 0.569,
+            "depth": 1,
+            "r": -4.9742
+          }
+        },
+        {
+          "id": "s13",
+          "face": "clubs_7",
+          "asset": "the-one-ring-main/playables/master/assets/cards/clubs/Clubs-7.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 711.8,
+            "y": 742.1,
+            "scale": 0.62,
+            "depth": 1,
+            "r": -1.309
+          },
+          "landscape": {
+            "x": 1117.4,
+            "y": 558.4,
+            "scale": 0.569,
+            "depth": 1,
+            "r": -1.309
+          }
+        },
+        {
+          "id": "s14",
+          "face": "diamonds_6",
+          "asset": "the-one-ring-main/playables/master/assets/cards/diamonds/Diamonds-6.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 540,
+            "y": 758.9,
+            "scale": 0.62,
+            "depth": 3
+          },
+          "landscape": {
+            "x": 960,
+            "y": 573.5,
+            "scale": 0.569,
+            "depth": 3
+          }
+        }
+      ],
+      "telon": {
+        "portrait": {
+          "x": 440,
+          "y": 1497,
+          "scale": 2.5,
+          "depth": 9
+        },
+        "landscape": {
+          "x": 880,
+          "y": 896,
+          "scale": 2.5,
+          "depth": 9
+        }
+      }
+    },
+    "hard": {
+      "deal": {
+        "style": "slide",
+        "stagger": 24,
+        "duration": 340,
+        "from": "top"
+      },
+      "animation": {
+        "default": {
+          "curve_height": 150,
+          "first_duration": 400,
+          "second_duration": 300
+        },
+        "per_card": {
+          "s0": {
+            "curve_height": 291,
+            "first_duration": 589,
+            "second_duration": 300
+          },
+          "s4": {
+            "curve_height": 287,
+            "first_duration": 584,
+            "second_duration": 300
+          },
+          "s2": {
+            "curve_height": 300,
+            "first_duration": 600,
+            "second_duration": 300
+          },
+          "s15": {
+            "curve_height": 199,
+            "first_duration": 473,
+            "second_duration": 300
+          },
+          "s11": {
+            "curve_height": 211,
+            "first_duration": 489,
+            "second_duration": 300
+          },
+          "s13": {
+            "curve_height": 218,
+            "first_duration": 498,
+            "second_duration": 300
+          },
+          "s1": {
+            "curve_height": 291,
+            "first_duration": 589,
+            "second_duration": 300
+          },
+          "s5": {
+            "curve_height": 287,
+            "first_duration": 584,
+            "second_duration": 300
+          },
+          "s3": {
+            "curve_height": 300,
+            "first_duration": 600,
+            "second_duration": 300
+          },
+          "s16": {
+            "curve_height": 199,
+            "first_duration": 473,
+            "second_duration": 300
+          },
+          "s12": {
+            "curve_height": 211,
+            "first_duration": 489,
+            "second_duration": 300
+          },
+          "s14": {
+            "curve_height": 218,
+            "first_duration": 498,
+            "second_duration": 300
+          },
+          "s10": {
+            "curve_height": 205,
+            "first_duration": 482,
+            "second_duration": 300
+          },
+          "s6": {
+            "curve_height": 273,
+            "first_duration": 566,
+            "second_duration": 300
+          },
+          "s8": {
+            "curve_height": 239,
+            "first_duration": 524,
+            "second_duration": 300
+          },
+          "s7": {
+            "curve_height": 260,
+            "first_duration": 550,
+            "second_duration": 300
+          },
+          "s9": {
+            "curve_height": 260,
+            "first_duration": 550,
+            "second_duration": 300
+          }
+        }
+      },
+      "game_flow": {
+        "mode": "dependency",
+        "dependencies": {
+          "s0": [
+            "s4",
+            "s2",
+            "s6",
+            "s8"
+          ],
+          "s4": [
+            "s2",
+            "s7"
+          ],
+          "s2": [
+            "s7"
+          ],
+          "s15": [
+            "s11",
+            "s13",
+            "s10",
+            "s8"
+          ],
+          "s11": [
+            "s13",
+            "s7"
+          ],
+          "s13": [
+            "s7"
+          ],
+          "s1": [
+            "s5",
+            "s3",
+            "s6",
+            "s8"
+          ],
+          "s5": [
+            "s3",
+            "s9"
+          ],
+          "s3": [
+            "s9"
+          ],
+          "s16": [
+            "s12",
+            "s14",
+            "s10",
+            "s8"
+          ],
+          "s12": [
+            "s14",
+            "s9"
+          ],
+          "s14": [
+            "s9"
+          ],
+          "s10": [
+            "s8"
+          ],
+          "s6": [
+            "s8"
+          ]
+        },
+        "initially_playable": [
+          "s8",
+          "s7",
+          "s9"
+        ],
+        "deal_order": [
+          "s0",
+          "s4",
+          "s2",
+          "s15",
+          "s11",
+          "s13",
+          "s1",
+          "s5",
+          "s3",
+          "s16",
+          "s12",
+          "s14",
+          "s10",
+          "s6",
+          "s8",
+          "s7",
+          "s9"
+        ]
+      },
+      "talon": {
+        "sequence": [
+          "spades_2",
+          "clubs_10",
+          "heart_a",
+          "clubs_9",
+          "clubs_a",
+          "spades_10",
+          "heart_8",
+          "spades_j",
+          "diamonds_q",
+          "heart_9",
+          "heart_j",
+          "diamonds_a"
+        ],
+        "base": {
+          "portrait": {
+            "x": 540,
+            "y": 1497,
+            "scale": 1.2,
+            "depth": 27
+          },
+          "landscape": {
+            "x": 960,
+            "y": 896,
+            "scale": 1.1,
+            "depth": 27
+          }
+        },
+        "deck": {
+          "portrait": {
+            "x": 340,
+            "y": 1497,
+            "scale": 0.782,
+            "depth": 28
+          },
+          "landscape": {
+            "x": 800,
+            "y": 896,
+            "scale": 0.81,
+            "depth": 28
+          }
+        }
+      },
+      "cards": [
+        {
+          "id": "s0",
+          "face": "clubs_q",
+          "asset": "the-one-ring-main/playables/master/assets/cards/clubs/Clubs-Q.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 376,
+            "y": 412,
+            "scale": 0.62,
+            "depth": 1,
+            "r": -1.309
+          },
+          "landscape": {
+            "x": 819.4,
+            "y": 129.6,
+            "scale": 0.52,
+            "depth": 1,
+            "r": -1.309
+          }
+        },
+        {
+          "id": "s1",
+          "face": "heart_2",
+          "asset": "the-one-ring-main/playables/master/assets/cards/hearts/Heart-2.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 711,
+            "y": 412,
+            "scale": 0.62,
+            "depth": 1,
+            "r": -4.9742
+          },
+          "landscape": {
+            "x": 1100.6,
+            "y": 129.6,
+            "scale": 0.52,
+            "depth": 1,
+            "r": -4.9742
+          }
+        },
+        {
+          "id": "s2",
+          "face": "heart_10",
+          "asset": "the-one-ring-main/playables/master/assets/cards/hearts/Heart-10.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 228,
+            "y": 419,
+            "scale": 0.62,
+            "depth": 3,
+            "r": -6.0214
+          },
+          "landscape": {
+            "x": 694.2,
+            "y": 136,
+            "scale": 0.52,
+            "depth": 3,
+            "r": -6.0214
+          }
+        },
+        {
+          "id": "s3",
+          "face": "spades_9",
+          "asset": "the-one-ring-main/playables/master/assets/cards/spade/Spades-9.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 860,
+            "y": 419,
+            "scale": 0.62,
+            "depth": 3,
+            "r": -0.2618
+          },
+          "landscape": {
+            "x": 1225.8,
+            "y": 136,
+            "scale": 0.52,
+            "depth": 3,
+            "r": -0.2618
+          }
+        },
+        {
+          "id": "s4",
+          "face": "spades_k",
+          "asset": "the-one-ring-main/playables/master/assets/cards/spade/Spades-K.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 320,
+            "y": 444,
+            "scale": 0.62,
+            "depth": 2,
+            "r": -6.0214
+          },
+          "landscape": {
+            "x": 771.9,
+            "y": 157.2,
+            "scale": 0.52,
+            "depth": 2,
+            "r": -6.0214
+          }
+        },
+        {
+          "id": "s5",
+          "face": "diamonds_j",
+          "asset": "the-one-ring-main/playables/master/assets/cards/diamonds/Diamonds-J.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 767,
+            "y": 444,
+            "scale": 0.62,
+            "depth": 2,
+            "r": -0.2618
+          },
+          "landscape": {
+            "x": 1148.1,
+            "y": 157.2,
+            "scale": 0.52,
+            "depth": 2,
+            "r": -0.2618
+          }
+        },
+        {
+          "id": "s6",
+          "face": "diamonds_2",
+          "asset": "the-one-ring-main/playables/master/assets/cards/diamonds/Diamonds-2.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 544,
+            "y": 474,
+            "scale": 0.62,
+            "depth": 3
+          },
+          "landscape": {
+            "x": 960,
+            "y": 181.6,
+            "scale": 0.52,
+            "depth": 3
+          }
+        },
+        {
+          "id": "s7",
+          "face": "heart_q",
+          "asset": "the-one-ring-main/playables/master/assets/cards/hearts/Heart-Q.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 201,
+            "y": 620,
+            "scale": 0.62,
+            "depth": 4
+          },
+          "landscape": {
+            "x": 672.4,
+            "y": 304.2,
+            "scale": 0.52,
+            "depth": 4
+          }
+        },
+        {
+          "id": "s8",
+          "face": "heart_a",
+          "asset": "the-one-ring-main/playables/master/assets/cards/hearts/Heart-A.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 544,
+            "y": 620,
+            "scale": 0.62,
+            "depth": 4
+          },
+          "landscape": {
+            "x": 960,
+            "y": 304.2,
+            "scale": 0.52,
+            "depth": 4
+          }
+        },
+        {
+          "id": "s9",
+          "face": "clubs_k",
+          "asset": "the-one-ring-main/playables/master/assets/cards/clubs/Clubs-K.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 886,
+            "y": 620,
+            "scale": 0.62,
+            "depth": 4
+          },
+          "landscape": {
+            "x": 1247.6,
+            "y": 304.2,
+            "scale": 0.52,
+            "depth": 4
+          }
+        },
+        {
+          "id": "s10",
+          "face": "diamonds_3",
+          "asset": "the-one-ring-main/playables/master/assets/cards/diamonds/Diamonds-3.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 544,
+            "y": 766,
+            "scale": 0.62,
+            "depth": 3
+          },
+          "landscape": {
+            "x": 960,
+            "y": 426.2,
+            "scale": 0.52,
+            "depth": 3
+          }
+        },
+        {
+          "id": "s11",
+          "face": "heart_k",
+          "asset": "the-one-ring-main/playables/master/assets/cards/hearts/Heart-K.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 320,
+            "y": 795,
+            "scale": 0.62,
+            "depth": 2,
+            "r": -0.2618
+          },
+          "landscape": {
+            "x": 771.9,
+            "y": 451.2,
+            "scale": 0.52,
+            "depth": 2,
+            "r": -0.2618
+          }
+        },
+        {
+          "id": "s12",
+          "face": "spades_q",
+          "asset": "the-one-ring-main/playables/master/assets/cards/spade/Spades-Q.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 767,
+            "y": 795,
+            "scale": 0.62,
+            "depth": 2,
+            "r": -6.0214
+          },
+          "landscape": {
+            "x": 1148.1,
+            "y": 451.2,
+            "scale": 0.52,
+            "depth": 2,
+            "r": -6.0214
+          }
+        },
+        {
+          "id": "s13",
+          "face": "diamonds_10",
+          "asset": "the-one-ring-main/playables/master/assets/cards/diamonds/Diamonds-10.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 227,
+            "y": 820,
+            "scale": 0.62,
+            "depth": 3,
+            "r": -0.2618
+          },
+          "landscape": {
+            "x": 694.2,
+            "y": 472.4,
+            "scale": 0.52,
+            "depth": 3,
+            "r": -0.2618
+          }
+        },
+        {
+          "id": "s14",
+          "face": "clubs_j",
+          "asset": "the-one-ring-main/playables/master/assets/cards/clubs/Clubs-J.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 860,
+            "y": 820,
+            "scale": 0.62,
+            "depth": 3,
+            "r": -6.0214
+          },
+          "landscape": {
+            "x": 1225.8,
+            "y": 472.4,
+            "scale": 0.52,
+            "depth": 3,
+            "r": -6.0214
+          }
+        },
+        {
+          "id": "s15",
+          "face": "spades_a",
+          "asset": "the-one-ring-main/playables/master/assets/cards/spade/Spades-A.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 376,
+            "y": 828,
+            "scale": 0.62,
+            "depth": 1,
+            "r": -4.9742
+          },
+          "landscape": {
+            "x": 819.4,
+            "y": 478.8,
+            "scale": 0.52,
+            "depth": 1,
+            "r": -4.9742
+          }
+        },
+        {
+          "id": "s16",
+          "face": "diamonds_k",
+          "asset": "the-one-ring-main/playables/master/assets/cards/diamonds/Diamonds-K.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 711,
+            "y": 828,
+            "scale": 0.62,
+            "depth": 1,
+            "r": -1.309
+          },
+          "landscape": {
+            "x": 1100.6,
+            "y": 478.8,
+            "scale": 0.52,
+            "depth": 1,
+            "r": -1.309
+          }
+        }
+      ],
+      "telon": {
+        "portrait": {
+          "x": 440,
+          "y": 1497,
+          "scale": 2.5,
+          "depth": 9
+        },
+        "landscape": {
+          "x": 880,
+          "y": 896,
+          "scale": 2.5,
+          "depth": 9
+        }
+      }
+    }
+  },
+  "end_card": {
+    "title": "You Win!",
+    "cta_text": "PLAY NOW",
+    "lose_title": "So Close!",
+    "lose_cta_text": "TRY AGAIN",
+    "store_url": "https://play.google.com/store/apps/details?id=com.brightpointstudios.apps.castle_royal",
+    "apple_url": "https://apps.apple.com/in/app/solitaire-castle-royal/id6753009880",
+    "google_url": "https://play.google.com/store/apps/details?id=com.brightpointstudios.apps.castle_royal",
+    "cta_image": "engine/assets/cta/play_now.webp",
+    "title_pos": {
+      "portrait": {
+        "x": 540,
+        "y": 480,
+        "size": 168
+      },
+      "landscape": {
+        "x": 960,
+        "y": 270,
+        "size": 112
+      }
+    },
+    "cta_pos": {
+      "portrait": {
+        "x": 540,
+        "y": 1382,
+        "scale": 0.9
+      },
+      "landscape": {
+        "x": 960,
+        "y": 778,
+        "scale": 0.6
+      }
+    }
+  },
+  "network": "applovin"
+}

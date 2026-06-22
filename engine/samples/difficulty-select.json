@@ -1,0 +1,1781 @@
+{
+  "name": "difficulty-select",
+  "platform": "applovin",
+  "talon_panel": false,
+  "canvas": {
+    "portrait": {
+      "width": 1080,
+      "height": 1920
+    },
+    "landscape": {
+      "width": 1920,
+      "height": 1080
+    }
+  },
+  "scales": {
+    "card": {
+      "portrait": 0.35,
+      "landscape": 0.27
+    },
+    "talon": {
+      "portrait": 1.2,
+      "landscape": 1.1
+    }
+  },
+  "background": {
+    "color": "#142a6c",
+    "layers": [
+      {
+        "id": "room",
+        "image": "the-one-ring-main/playables/royal/assets/images/main_bg.webp",
+        "image_landscape": "the-one-ring-main/playables/royal/assets/images/main_bg_landscape.webp",
+        "fit": "none",
+        "depth": 0,
+        "portrait": {
+          "x": 539,
+          "y": 960,
+          "scale": 1.25
+        },
+        "landscape": {
+          "x": 960,
+          "y": 540,
+          "scale": 1.25
+        }
+      },
+      {
+        "id": "table",
+        "image": "the-one-ring-main/playables/royal/assets/images/table_bg.webp",
+        "fit": "none",
+        "depth": 1,
+        "portrait": {
+          "x": 540,
+          "y": 1660,
+          "scale": 0.95
+        },
+        "landscape": {
+          "x": 960,
+          "y": 980,
+          "scale": 0.95
+        }
+      }
+    ]
+  },
+  "deck": {
+    "card_back": "the-one-ring-main/playables/master/assets/cards/Back_Card.png",
+    "talon_image": "engine/assets/talon/telon.webp"
+  },
+  "start_scene": {
+    "type": "difficulty",
+    "title": {
+      "text": "CHOOSE DIFFICULTY",
+      "color": "#ffe9a8",
+      "size": 0.058,
+      "y": 345,
+      "y_landscape": 175
+    },
+    "options": [
+      {
+        "id": "easy",
+        "label": "EASY",
+        "color": "#2ed573",
+        "image": "engine/assets/difficulty/easy.png",
+        "portrait": {
+          "x": 540,
+          "y": 720,
+          "scale": 0.62
+        },
+        "landscape": {
+          "x": 520,
+          "y": 600,
+          "scale": 0.5
+        }
+      },
+      {
+        "id": "medium",
+        "label": "MEDIUM",
+        "color": "#ffa502",
+        "image": "engine/assets/difficulty/medium.png",
+        "portrait": {
+          "x": 540,
+          "y": 1040,
+          "scale": 0.62
+        },
+        "landscape": {
+          "x": 960,
+          "y": 600,
+          "scale": 0.5
+        }
+      },
+      {
+        "id": "hard",
+        "label": "HARD",
+        "color": "#ff4757",
+        "image": "engine/assets/difficulty/hard.png",
+        "portrait": {
+          "x": 540,
+          "y": 1360,
+          "scale": 0.62
+        },
+        "landscape": {
+          "x": 1400,
+          "y": 600,
+          "scale": 0.5
+        }
+      }
+    ]
+  },
+  "levels": {
+    "easy": {
+      "deal": {
+        "style": "deal_curve",
+        "stagger": 70,
+        "duration": 480,
+        "curve_height": 260
+      },
+      "animation": {
+        "default": {
+          "curve_height": 150,
+          "first_duration": 400,
+          "second_duration": 300
+        },
+        "per_card": {
+          "s1": {
+            "curve_height": 300,
+            "first_duration": 600,
+            "second_duration": 300
+          },
+          "s12": {
+            "curve_height": 184,
+            "first_duration": 455,
+            "second_duration": 300
+          },
+          "s13": {
+            "curve_height": 184,
+            "first_duration": 455,
+            "second_duration": 300
+          },
+          "s2": {
+            "curve_height": 300,
+            "first_duration": 600,
+            "second_duration": 300
+          },
+          "s3": {
+            "curve_height": 299,
+            "first_duration": 599,
+            "second_duration": 300
+          },
+          "s10": {
+            "curve_height": 199,
+            "first_duration": 474,
+            "second_duration": 300
+          },
+          "s4": {
+            "curve_height": 299,
+            "first_duration": 599,
+            "second_duration": 300
+          },
+          "s11": {
+            "curve_height": 199,
+            "first_duration": 474,
+            "second_duration": 300
+          },
+          "s5": {
+            "curve_height": 246,
+            "first_duration": 533,
+            "second_duration": 300
+          },
+          "s9": {
+            "curve_height": 246,
+            "first_duration": 533,
+            "second_duration": 300
+          },
+          "s0": {
+            "curve_height": 297,
+            "first_duration": 596,
+            "second_duration": 300
+          },
+          "s14": {
+            "curve_height": 156,
+            "first_duration": 421,
+            "second_duration": 300
+          },
+          "s6": {
+            "curve_height": 239,
+            "first_duration": 524,
+            "second_duration": 300
+          },
+          "s8": {
+            "curve_height": 239,
+            "first_duration": 524,
+            "second_duration": 300
+          },
+          "s7": {
+            "curve_height": 227,
+            "first_duration": 509,
+            "second_duration": 300
+          }
+        }
+      },
+      "game_flow": {
+        "mode": "dependency",
+        "dependencies": {
+          "s1": [
+            "s3",
+            "s5",
+            "s0",
+            "s6",
+            "s7"
+          ],
+          "s12": [
+            "s10",
+            "s5",
+            "s14",
+            "s6",
+            "s7"
+          ],
+          "s13": [
+            "s11",
+            "s9",
+            "s14",
+            "s8",
+            "s7"
+          ],
+          "s2": [
+            "s4",
+            "s9",
+            "s0",
+            "s8",
+            "s7"
+          ],
+          "s3": [
+            "s5",
+            "s6"
+          ],
+          "s10": [
+            "s5",
+            "s6"
+          ],
+          "s4": [
+            "s9",
+            "s8"
+          ],
+          "s11": [
+            "s9",
+            "s8"
+          ],
+          "s5": [
+            "s6"
+          ],
+          "s9": [
+            "s8"
+          ],
+          "s0": [
+            "s6",
+            "s8",
+            "s7"
+          ],
+          "s14": [
+            "s6",
+            "s8",
+            "s7"
+          ],
+          "s6": [
+            "s7"
+          ],
+          "s8": [
+            "s7"
+          ]
+        },
+        "initially_playable": [
+          "s7"
+        ],
+        "deal_order": [
+          "s1",
+          "s12",
+          "s13",
+          "s2",
+          "s3",
+          "s10",
+          "s4",
+          "s11",
+          "s5",
+          "s9",
+          "s0",
+          "s14",
+          "s6",
+          "s8",
+          "s7"
+        ]
+      },
+      "talon": {
+        "sequence": [
+          "diamonds_a"
+        ],
+        "base": {
+          "portrait": {
+            "x": 540,
+            "y": 1497,
+            "scale": 1.2,
+            "depth": 25
+          },
+          "landscape": {
+            "x": 960,
+            "y": 896,
+            "scale": 1.1,
+            "depth": 25
+          }
+        },
+        "deck": {
+          "portrait": {
+            "x": 340,
+            "y": 1497,
+            "scale": 1.216,
+            "depth": 26
+          },
+          "landscape": {
+            "x": 800,
+            "y": 896,
+            "scale": 0.5,
+            "depth": 26
+          }
+        }
+      },
+      "cards": [
+        {
+          "id": "s0",
+          "face": "heart_4",
+          "asset": "the-one-ring-main/playables/master/assets/cards/hearts/Heart-4.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 540,
+            "y": 321,
+            "scale": 0.7,
+            "depth": 3
+          },
+          "landscape": {
+            "x": 960,
+            "y": 244,
+            "scale": 0.5,
+            "depth": 3
+          }
+        },
+        {
+          "id": "s1",
+          "face": "clubs_4",
+          "asset": "the-one-ring-main/playables/master/assets/cards/clubs/Clubs-4.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 359,
+            "y": 366,
+            "scale": 0.7,
+            "depth": 1,
+            "r": -1.309
+          },
+          "landscape": {
+            "x": 822,
+            "y": 257,
+            "scale": 0.5,
+            "depth": 1,
+            "r": -1.309
+          }
+        },
+        {
+          "id": "s2",
+          "face": "diamonds_3",
+          "asset": "the-one-ring-main/playables/master/assets/cards/diamonds/Diamonds-3.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 742,
+            "y": 371,
+            "scale": 0.7,
+            "depth": 1,
+            "r": -4.9742
+          },
+          "landscape": {
+            "x": 1098,
+            "y": 257,
+            "scale": 0.5,
+            "depth": 1,
+            "r": -4.9742
+          }
+        },
+        {
+          "id": "s3",
+          "face": "heart_2",
+          "asset": "the-one-ring-main/playables/master/assets/cards/hearts/Heart-2.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 264,
+            "y": 402,
+            "scale": 0.7,
+            "depth": 2
+          },
+          "landscape": {
+            "x": 782,
+            "y": 272,
+            "scale": 0.5,
+            "depth": 2
+          }
+        },
+        {
+          "id": "s4",
+          "face": "clubs_q",
+          "asset": "the-one-ring-main/playables/master/assets/cards/clubs/Clubs-Q.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 837,
+            "y": 407,
+            "scale": 0.7,
+            "depth": 2
+          },
+          "landscape": {
+            "x": 1138,
+            "y": 272,
+            "scale": 0.5,
+            "depth": 2
+          }
+        },
+        {
+          "id": "s5",
+          "face": "heart_a",
+          "asset": "the-one-ring-main/playables/master/assets/cards/hearts/Heart-A.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 268,
+            "y": 577,
+            "scale": 0.7,
+            "depth": 3
+          },
+          "landscape": {
+            "x": 782,
+            "y": 416,
+            "scale": 0.5,
+            "depth": 3
+          }
+        },
+        {
+          "id": "s6",
+          "face": "spades_5",
+          "asset": "the-one-ring-main/playables/master/assets/cards/spade/Spades-5.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 356,
+            "y": 577,
+            "scale": 0.7,
+            "depth": 4,
+            "r": -1.5708
+          },
+          "landscape": {
+            "x": 819,
+            "y": 416,
+            "scale": 0.5,
+            "depth": 4,
+            "r": -1.5708
+          }
+        },
+        {
+          "id": "s7",
+          "face": "clubs_2",
+          "asset": "the-one-ring-main/playables/master/assets/cards/clubs/Clubs-2.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 544,
+            "y": 565,
+            "scale": 0.7,
+            "depth": 5
+          },
+          "landscape": {
+            "x": 960,
+            "y": 416,
+            "scale": 0.5,
+            "depth": 5
+          }
+        },
+        {
+          "id": "s8",
+          "face": "spades_3",
+          "asset": "the-one-ring-main/playables/master/assets/cards/spade/Spades-3.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 753,
+            "y": 582,
+            "scale": 0.7,
+            "depth": 4,
+            "r": -1.5708
+          },
+          "landscape": {
+            "x": 1101,
+            "y": 416,
+            "scale": 0.5,
+            "depth": 4,
+            "r": -1.5708
+          }
+        },
+        {
+          "id": "s9",
+          "face": "spades_4",
+          "asset": "the-one-ring-main/playables/master/assets/cards/spade/Spades-4.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 841,
+            "y": 582,
+            "scale": 0.7,
+            "depth": 3
+          },
+          "landscape": {
+            "x": 1138,
+            "y": 416,
+            "scale": 0.5,
+            "depth": 3
+          }
+        },
+        {
+          "id": "s10",
+          "face": "heart_k",
+          "asset": "the-one-ring-main/playables/master/assets/cards/hearts/Heart-K.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 266,
+            "y": 767,
+            "scale": 0.7,
+            "depth": 2
+          },
+          "landscape": {
+            "x": 782,
+            "y": 560,
+            "scale": 0.5,
+            "depth": 2
+          }
+        },
+        {
+          "id": "s11",
+          "face": "diamonds_2",
+          "asset": "the-one-ring-main/playables/master/assets/cards/diamonds/Diamonds-2.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 839,
+            "y": 772,
+            "scale": 0.7,
+            "depth": 2
+          },
+          "landscape": {
+            "x": 1138,
+            "y": 560,
+            "scale": 0.5,
+            "depth": 2
+          }
+        },
+        {
+          "id": "s12",
+          "face": "spades_a",
+          "asset": "the-one-ring-main/playables/master/assets/cards/spade/Spades-A.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 361,
+            "y": 803,
+            "scale": 0.7,
+            "depth": 1,
+            "r": -4.9742
+          },
+          "landscape": {
+            "x": 822,
+            "y": 574,
+            "scale": 0.5,
+            "depth": 1,
+            "r": -4.9742
+          }
+        },
+        {
+          "id": "s13",
+          "face": "spades_k",
+          "asset": "the-one-ring-main/playables/master/assets/cards/spade/Spades-K.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 744,
+            "y": 808,
+            "scale": 0.7,
+            "depth": 1,
+            "r": -1.309
+          },
+          "landscape": {
+            "x": 1098,
+            "y": 574,
+            "scale": 0.5,
+            "depth": 1,
+            "r": -1.309
+          }
+        },
+        {
+          "id": "s14",
+          "face": "clubs_3",
+          "asset": "the-one-ring-main/playables/master/assets/cards/clubs/Clubs-3.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 542,
+            "y": 824,
+            "scale": 0.7,
+            "depth": 3
+          },
+          "landscape": {
+            "x": 960,
+            "y": 588,
+            "scale": 0.5,
+            "depth": 3
+          }
+        }
+      ],
+      "telon": {
+        "portrait": {
+          "x": 440,
+          "y": 1497,
+          "scale": 2.5,
+          "depth": 9
+        },
+        "landscape": {
+          "x": 880,
+          "y": 896,
+          "scale": 2.5,
+          "depth": 9
+        }
+      }
+    },
+    "medium": {
+      "deal": {
+        "style": "fade",
+        "stagger": 45,
+        "duration": 360
+      },
+      "animation": {
+        "default": {
+          "curve_height": 150,
+          "first_duration": 400,
+          "second_duration": 300
+        },
+        "per_card": {
+          "s1": {
+            "curve_height": 300,
+            "first_duration": 600,
+            "second_duration": 300
+          },
+          "s12": {
+            "curve_height": 184,
+            "first_duration": 455,
+            "second_duration": 300
+          },
+          "s13": {
+            "curve_height": 184,
+            "first_duration": 455,
+            "second_duration": 300
+          },
+          "s2": {
+            "curve_height": 300,
+            "first_duration": 600,
+            "second_duration": 300
+          },
+          "s3": {
+            "curve_height": 299,
+            "first_duration": 599,
+            "second_duration": 300
+          },
+          "s10": {
+            "curve_height": 199,
+            "first_duration": 474,
+            "second_duration": 300
+          },
+          "s4": {
+            "curve_height": 299,
+            "first_duration": 599,
+            "second_duration": 300
+          },
+          "s11": {
+            "curve_height": 199,
+            "first_duration": 474,
+            "second_duration": 300
+          },
+          "s5": {
+            "curve_height": 246,
+            "first_duration": 533,
+            "second_duration": 300
+          },
+          "s9": {
+            "curve_height": 246,
+            "first_duration": 533,
+            "second_duration": 300
+          },
+          "s0": {
+            "curve_height": 297,
+            "first_duration": 596,
+            "second_duration": 300
+          },
+          "s14": {
+            "curve_height": 156,
+            "first_duration": 421,
+            "second_duration": 300
+          },
+          "s6": {
+            "curve_height": 239,
+            "first_duration": 524,
+            "second_duration": 300
+          },
+          "s8": {
+            "curve_height": 239,
+            "first_duration": 524,
+            "second_duration": 300
+          },
+          "s7": {
+            "curve_height": 227,
+            "first_duration": 509,
+            "second_duration": 300
+          }
+        }
+      },
+      "game_flow": {
+        "mode": "dependency",
+        "dependencies": {
+          "s1": [
+            "s3",
+            "s5",
+            "s0",
+            "s6",
+            "s7"
+          ],
+          "s12": [
+            "s10",
+            "s5",
+            "s14",
+            "s6",
+            "s7"
+          ],
+          "s13": [
+            "s11",
+            "s9",
+            "s14",
+            "s8",
+            "s7"
+          ],
+          "s2": [
+            "s4",
+            "s9",
+            "s0",
+            "s8",
+            "s7"
+          ],
+          "s3": [
+            "s5",
+            "s6"
+          ],
+          "s10": [
+            "s5",
+            "s6"
+          ],
+          "s4": [
+            "s9",
+            "s8"
+          ],
+          "s11": [
+            "s9",
+            "s8"
+          ],
+          "s5": [
+            "s6"
+          ],
+          "s9": [
+            "s8"
+          ],
+          "s0": [
+            "s6",
+            "s8",
+            "s7"
+          ],
+          "s14": [
+            "s6",
+            "s8",
+            "s7"
+          ],
+          "s6": [
+            "s7"
+          ],
+          "s8": [
+            "s7"
+          ]
+        },
+        "initially_playable": [
+          "s7"
+        ],
+        "deal_order": [
+          "s1",
+          "s12",
+          "s13",
+          "s2",
+          "s3",
+          "s10",
+          "s4",
+          "s11",
+          "s5",
+          "s9",
+          "s0",
+          "s14",
+          "s6",
+          "s8",
+          "s7"
+        ]
+      },
+      "talon": {
+        "sequence": [
+          "spades_6",
+          "diamonds_5",
+          "heart_8",
+          "spades_2",
+          "clubs_5",
+          "heart_9",
+          "heart_7",
+          "heart_a",
+          "spades_7"
+        ],
+        "base": {
+          "portrait": {
+            "x": 540,
+            "y": 1497,
+            "scale": 1.2,
+            "depth": 25
+          },
+          "landscape": {
+            "x": 960,
+            "y": 896,
+            "scale": 1.1,
+            "depth": 25
+          }
+        },
+        "deck": {
+          "portrait": {
+            "x": 340,
+            "y": 1497,
+            "scale": 1.216,
+            "depth": 26
+          },
+          "landscape": {
+            "x": 800,
+            "y": 896,
+            "scale": 0.791,
+            "depth": 26
+          }
+        }
+      },
+      "cards": [
+        {
+          "id": "s0",
+          "face": "spades_4",
+          "asset": "the-one-ring-main/playables/master/assets/cards/spade/Spades-4.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 540,
+            "y": 332.1,
+            "scale": 0.62,
+            "depth": 3
+          },
+          "landscape": {
+            "x": 960,
+            "y": 182.5,
+            "scale": 0.569,
+            "depth": 3
+          }
+        },
+        {
+          "id": "s1",
+          "face": "spades_5",
+          "asset": "the-one-ring-main/playables/master/assets/cards/spade/Spades-5.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 368.2,
+            "y": 348.9,
+            "scale": 0.62,
+            "depth": 1,
+            "r": -1.309
+          },
+          "landscape": {
+            "x": 802.6,
+            "y": 197.6,
+            "scale": 0.569,
+            "depth": 1,
+            "r": -1.309
+          }
+        },
+        {
+          "id": "s2",
+          "face": "heart_6",
+          "asset": "the-one-ring-main/playables/master/assets/cards/hearts/Heart-6.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 711.8,
+            "y": 348.9,
+            "scale": 0.62,
+            "depth": 1,
+            "r": -4.9742
+          },
+          "landscape": {
+            "x": 1117.4,
+            "y": 197.6,
+            "scale": 0.569,
+            "depth": 1,
+            "r": -4.9742
+          }
+        },
+        {
+          "id": "s3",
+          "face": "heart_2",
+          "asset": "the-one-ring-main/playables/master/assets/cards/hearts/Heart-2.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 319.7,
+            "y": 367.3,
+            "scale": 0.62,
+            "depth": 2
+          },
+          "landscape": {
+            "x": 758,
+            "y": 214.1,
+            "scale": 0.569,
+            "depth": 2
+          }
+        },
+        {
+          "id": "s4",
+          "face": "clubs_8",
+          "asset": "the-one-ring-main/playables/master/assets/cards/clubs/Clubs-8.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 760.3,
+            "y": 367.3,
+            "scale": 0.62,
+            "depth": 2
+          },
+          "landscape": {
+            "x": 1162,
+            "y": 214.1,
+            "scale": 0.569,
+            "depth": 2
+          }
+        },
+        {
+          "id": "s5",
+          "face": "clubs_4",
+          "asset": "the-one-ring-main/playables/master/assets/cards/clubs/Clubs-4.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 319.7,
+            "y": 545.2,
+            "scale": 0.62,
+            "depth": 3
+          },
+          "landscape": {
+            "x": 758,
+            "y": 378,
+            "scale": 0.569,
+            "depth": 3
+          }
+        },
+        {
+          "id": "s6",
+          "face": "heart_5",
+          "asset": "the-one-ring-main/playables/master/assets/cards/hearts/Heart-5.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 364.6,
+            "y": 545.2,
+            "scale": 0.62,
+            "depth": 4,
+            "r": -1.5708
+          },
+          "landscape": {
+            "x": 799,
+            "y": 378,
+            "scale": 0.569,
+            "depth": 4,
+            "r": -1.5708
+          }
+        },
+        {
+          "id": "s7",
+          "face": "clubs_6",
+          "asset": "the-one-ring-main/playables/master/assets/cards/clubs/Clubs-6.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 540,
+            "y": 545.2,
+            "scale": 0.62,
+            "depth": 5
+          },
+          "landscape": {
+            "x": 960,
+            "y": 378,
+            "scale": 0.569,
+            "depth": 5
+          }
+        },
+        {
+          "id": "s8",
+          "face": "clubs_3",
+          "asset": "the-one-ring-main/playables/master/assets/cards/clubs/Clubs-3.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 715.4,
+            "y": 545.2,
+            "scale": 0.62,
+            "depth": 4,
+            "r": -1.5708
+          },
+          "landscape": {
+            "x": 1121,
+            "y": 378,
+            "scale": 0.569,
+            "depth": 4,
+            "r": -1.5708
+          }
+        },
+        {
+          "id": "s9",
+          "face": "spades_8",
+          "asset": "the-one-ring-main/playables/master/assets/cards/spade/Spades-8.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 760.3,
+            "y": 545.2,
+            "scale": 0.62,
+            "depth": 3
+          },
+          "landscape": {
+            "x": 1162,
+            "y": 378,
+            "scale": 0.569,
+            "depth": 3
+          }
+        },
+        {
+          "id": "s10",
+          "face": "diamonds_3",
+          "asset": "the-one-ring-main/playables/master/assets/cards/diamonds/Diamonds-3.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 319.7,
+            "y": 723.7,
+            "scale": 0.62,
+            "depth": 2
+          },
+          "landscape": {
+            "x": 758,
+            "y": 541.2,
+            "scale": 0.569,
+            "depth": 2
+          }
+        },
+        {
+          "id": "s11",
+          "face": "spades_9",
+          "asset": "the-one-ring-main/playables/master/assets/cards/spade/Spades-9.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 760.3,
+            "y": 723.7,
+            "scale": 0.62,
+            "depth": 2
+          },
+          "landscape": {
+            "x": 1162,
+            "y": 541.2,
+            "scale": 0.569,
+            "depth": 2
+          }
+        },
+        {
+          "id": "s12",
+          "face": "diamonds_7",
+          "asset": "the-one-ring-main/playables/master/assets/cards/diamonds/Diamonds-7.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 368.2,
+            "y": 742.1,
+            "scale": 0.62,
+            "depth": 1,
+            "r": -4.9742
+          },
+          "landscape": {
+            "x": 802.6,
+            "y": 558.4,
+            "scale": 0.569,
+            "depth": 1,
+            "r": -4.9742
+          }
+        },
+        {
+          "id": "s13",
+          "face": "clubs_7",
+          "asset": "the-one-ring-main/playables/master/assets/cards/clubs/Clubs-7.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 711.8,
+            "y": 742.1,
+            "scale": 0.62,
+            "depth": 1,
+            "r": -1.309
+          },
+          "landscape": {
+            "x": 1117.4,
+            "y": 558.4,
+            "scale": 0.569,
+            "depth": 1,
+            "r": -1.309
+          }
+        },
+        {
+          "id": "s14",
+          "face": "diamonds_6",
+          "asset": "the-one-ring-main/playables/master/assets/cards/diamonds/Diamonds-6.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 540,
+            "y": 758.9,
+            "scale": 0.62,
+            "depth": 3
+          },
+          "landscape": {
+            "x": 960,
+            "y": 573.5,
+            "scale": 0.569,
+            "depth": 3
+          }
+        }
+      ],
+      "telon": {
+        "portrait": {
+          "x": 440,
+          "y": 1497,
+          "scale": 2.5,
+          "depth": 9
+        },
+        "landscape": {
+          "x": 880,
+          "y": 896,
+          "scale": 2.5,
+          "depth": 9
+        }
+      }
+    },
+    "hard": {
+      "deal": {
+        "style": "slide",
+        "stagger": 24,
+        "duration": 340,
+        "from": "top"
+      },
+      "animation": {
+        "default": {
+          "curve_height": 150,
+          "first_duration": 400,
+          "second_duration": 300
+        },
+        "per_card": {
+          "s0": {
+            "curve_height": 291,
+            "first_duration": 589,
+            "second_duration": 300
+          },
+          "s4": {
+            "curve_height": 287,
+            "first_duration": 584,
+            "second_duration": 300
+          },
+          "s2": {
+            "curve_height": 300,
+            "first_duration": 600,
+            "second_duration": 300
+          },
+          "s15": {
+            "curve_height": 199,
+            "first_duration": 473,
+            "second_duration": 300
+          },
+          "s11": {
+            "curve_height": 211,
+            "first_duration": 489,
+            "second_duration": 300
+          },
+          "s13": {
+            "curve_height": 218,
+            "first_duration": 498,
+            "second_duration": 300
+          },
+          "s1": {
+            "curve_height": 291,
+            "first_duration": 589,
+            "second_duration": 300
+          },
+          "s5": {
+            "curve_height": 287,
+            "first_duration": 584,
+            "second_duration": 300
+          },
+          "s3": {
+            "curve_height": 300,
+            "first_duration": 600,
+            "second_duration": 300
+          },
+          "s16": {
+            "curve_height": 199,
+            "first_duration": 473,
+            "second_duration": 300
+          },
+          "s12": {
+            "curve_height": 211,
+            "first_duration": 489,
+            "second_duration": 300
+          },
+          "s14": {
+            "curve_height": 218,
+            "first_duration": 498,
+            "second_duration": 300
+          },
+          "s10": {
+            "curve_height": 205,
+            "first_duration": 482,
+            "second_duration": 300
+          },
+          "s6": {
+            "curve_height": 273,
+            "first_duration": 566,
+            "second_duration": 300
+          },
+          "s8": {
+            "curve_height": 239,
+            "first_duration": 524,
+            "second_duration": 300
+          },
+          "s7": {
+            "curve_height": 260,
+            "first_duration": 550,
+            "second_duration": 300
+          },
+          "s9": {
+            "curve_height": 260,
+            "first_duration": 550,
+            "second_duration": 300
+          }
+        }
+      },
+      "game_flow": {
+        "mode": "dependency",
+        "dependencies": {
+          "s0": [
+            "s4",
+            "s2",
+            "s6",
+            "s8"
+          ],
+          "s4": [
+            "s2",
+            "s7"
+          ],
+          "s2": [
+            "s7"
+          ],
+          "s15": [
+            "s11",
+            "s13",
+            "s10",
+            "s8"
+          ],
+          "s11": [
+            "s13",
+            "s7"
+          ],
+          "s13": [
+            "s7"
+          ],
+          "s1": [
+            "s5",
+            "s3",
+            "s6",
+            "s8"
+          ],
+          "s5": [
+            "s3",
+            "s9"
+          ],
+          "s3": [
+            "s9"
+          ],
+          "s16": [
+            "s12",
+            "s14",
+            "s10",
+            "s8"
+          ],
+          "s12": [
+            "s14",
+            "s9"
+          ],
+          "s14": [
+            "s9"
+          ],
+          "s10": [
+            "s8"
+          ],
+          "s6": [
+            "s8"
+          ]
+        },
+        "initially_playable": [
+          "s8",
+          "s7",
+          "s9"
+        ],
+        "deal_order": [
+          "s0",
+          "s4",
+          "s2",
+          "s15",
+          "s11",
+          "s13",
+          "s1",
+          "s5",
+          "s3",
+          "s16",
+          "s12",
+          "s14",
+          "s10",
+          "s6",
+          "s8",
+          "s7",
+          "s9"
+        ]
+      },
+      "talon": {
+        "sequence": [
+          "spades_2",
+          "clubs_10",
+          "heart_a",
+          "clubs_9",
+          "clubs_a",
+          "spades_10",
+          "heart_8",
+          "spades_j",
+          "diamonds_q",
+          "heart_9",
+          "heart_j",
+          "diamonds_a"
+        ],
+        "base": {
+          "portrait": {
+            "x": 540,
+            "y": 1497,
+            "scale": 1.2,
+            "depth": 27
+          },
+          "landscape": {
+            "x": 960,
+            "y": 896,
+            "scale": 1.1,
+            "depth": 27
+          }
+        },
+        "deck": {
+          "portrait": {
+            "x": 340,
+            "y": 1497,
+            "scale": 0.782,
+            "depth": 28
+          },
+          "landscape": {
+            "x": 800,
+            "y": 896,
+            "scale": 0.81,
+            "depth": 28
+          }
+        }
+      },
+      "cards": [
+        {
+          "id": "s0",
+          "face": "clubs_q",
+          "asset": "the-one-ring-main/playables/master/assets/cards/clubs/Clubs-Q.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 376,
+            "y": 412,
+            "scale": 0.62,
+            "depth": 1,
+            "r": -1.309
+          },
+          "landscape": {
+            "x": 819.4,
+            "y": 129.6,
+            "scale": 0.52,
+            "depth": 1,
+            "r": -1.309
+          }
+        },
+        {
+          "id": "s1",
+          "face": "heart_2",
+          "asset": "the-one-ring-main/playables/master/assets/cards/hearts/Heart-2.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 711,
+            "y": 412,
+            "scale": 0.62,
+            "depth": 1,
+            "r": -4.9742
+          },
+          "landscape": {
+            "x": 1100.6,
+            "y": 129.6,
+            "scale": 0.52,
+            "depth": 1,
+            "r": -4.9742
+          }
+        },
+        {
+          "id": "s2",
+          "face": "heart_10",
+          "asset": "the-one-ring-main/playables/master/assets/cards/hearts/Heart-10.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 228,
+            "y": 419,
+            "scale": 0.62,
+            "depth": 3,
+            "r": -6.0214
+          },
+          "landscape": {
+            "x": 694.2,
+            "y": 136,
+            "scale": 0.52,
+            "depth": 3,
+            "r": -6.0214
+          }
+        },
+        {
+          "id": "s3",
+          "face": "spades_9",
+          "asset": "the-one-ring-main/playables/master/assets/cards/spade/Spades-9.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 860,
+            "y": 419,
+            "scale": 0.62,
+            "depth": 3,
+            "r": -0.2618
+          },
+          "landscape": {
+            "x": 1225.8,
+            "y": 136,
+            "scale": 0.52,
+            "depth": 3,
+            "r": -0.2618
+          }
+        },
+        {
+          "id": "s4",
+          "face": "spades_k",
+          "asset": "the-one-ring-main/playables/master/assets/cards/spade/Spades-K.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 320,
+            "y": 444,
+            "scale": 0.62,
+            "depth": 2,
+            "r": -6.0214
+          },
+          "landscape": {
+            "x": 771.9,
+            "y": 157.2,
+            "scale": 0.52,
+            "depth": 2,
+            "r": -6.0214
+          }
+        },
+        {
+          "id": "s5",
+          "face": "diamonds_j",
+          "asset": "the-one-ring-main/playables/master/assets/cards/diamonds/Diamonds-J.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 767,
+            "y": 444,
+            "scale": 0.62,
+            "depth": 2,
+            "r": -0.2618
+          },
+          "landscape": {
+            "x": 1148.1,
+            "y": 157.2,
+            "scale": 0.52,
+            "depth": 2,
+            "r": -0.2618
+          }
+        },
+        {
+          "id": "s6",
+          "face": "diamonds_2",
+          "asset": "the-one-ring-main/playables/master/assets/cards/diamonds/Diamonds-2.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 544,
+            "y": 474,
+            "scale": 0.62,
+            "depth": 3
+          },
+          "landscape": {
+            "x": 960,
+            "y": 181.6,
+            "scale": 0.52,
+            "depth": 3
+          }
+        },
+        {
+          "id": "s7",
+          "face": "heart_q",
+          "asset": "the-one-ring-main/playables/master/assets/cards/hearts/Heart-Q.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 201,
+            "y": 620,
+            "scale": 0.62,
+            "depth": 4
+          },
+          "landscape": {
+            "x": 672.4,
+            "y": 304.2,
+            "scale": 0.52,
+            "depth": 4
+          }
+        },
+        {
+          "id": "s8",
+          "face": "heart_a",
+          "asset": "the-one-ring-main/playables/master/assets/cards/hearts/Heart-A.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 544,
+            "y": 620,
+            "scale": 0.62,
+            "depth": 4
+          },
+          "landscape": {
+            "x": 960,
+            "y": 304.2,
+            "scale": 0.52,
+            "depth": 4
+          }
+        },
+        {
+          "id": "s9",
+          "face": "clubs_k",
+          "asset": "the-one-ring-main/playables/master/assets/cards/clubs/Clubs-K.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 886,
+            "y": 620,
+            "scale": 0.62,
+            "depth": 4
+          },
+          "landscape": {
+            "x": 1247.6,
+            "y": 304.2,
+            "scale": 0.52,
+            "depth": 4
+          }
+        },
+        {
+          "id": "s10",
+          "face": "diamonds_3",
+          "asset": "the-one-ring-main/playables/master/assets/cards/diamonds/Diamonds-3.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 544,
+            "y": 766,
+            "scale": 0.62,
+            "depth": 3
+          },
+          "landscape": {
+            "x": 960,
+            "y": 426.2,
+            "scale": 0.52,
+            "depth": 3
+          }
+        },
+        {
+          "id": "s11",
+          "face": "heart_k",
+          "asset": "the-one-ring-main/playables/master/assets/cards/hearts/Heart-K.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 320,
+            "y": 795,
+            "scale": 0.62,
+            "depth": 2,
+            "r": -0.2618
+          },
+          "landscape": {
+            "x": 771.9,
+            "y": 451.2,
+            "scale": 0.52,
+            "depth": 2,
+            "r": -0.2618
+          }
+        },
+        {
+          "id": "s12",
+          "face": "spades_q",
+          "asset": "the-one-ring-main/playables/master/assets/cards/spade/Spades-Q.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 767,
+            "y": 795,
+            "scale": 0.62,
+            "depth": 2,
+            "r": -6.0214
+          },
+          "landscape": {
+            "x": 1148.1,
+            "y": 451.2,
+            "scale": 0.52,
+            "depth": 2,
+            "r": -6.0214
+          }
+        },
+        {
+          "id": "s13",
+          "face": "diamonds_10",
+          "asset": "the-one-ring-main/playables/master/assets/cards/diamonds/Diamonds-10.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 227,
+            "y": 820,
+            "scale": 0.62,
+            "depth": 3,
+            "r": -0.2618
+          },
+          "landscape": {
+            "x": 694.2,
+            "y": 472.4,
+            "scale": 0.52,
+            "depth": 3,
+            "r": -0.2618
+          }
+        },
+        {
+          "id": "s14",
+          "face": "clubs_j",
+          "asset": "the-one-ring-main/playables/master/assets/cards/clubs/Clubs-J.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 860,
+            "y": 820,
+            "scale": 0.62,
+            "depth": 3,
+            "r": -6.0214
+          },
+          "landscape": {
+            "x": 1225.8,
+            "y": 472.4,
+            "scale": 0.52,
+            "depth": 3,
+            "r": -6.0214
+          }
+        },
+        {
+          "id": "s15",
+          "face": "spades_a",
+          "asset": "the-one-ring-main/playables/master/assets/cards/spade/Spades-A.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 376,
+            "y": 828,
+            "scale": 0.62,
+            "depth": 1,
+            "r": -4.9742
+          },
+          "landscape": {
+            "x": 819.4,
+            "y": 478.8,
+            "scale": 0.52,
+            "depth": 1,
+            "r": -4.9742
+          }
+        },
+        {
+          "id": "s16",
+          "face": "diamonds_k",
+          "asset": "the-one-ring-main/playables/master/assets/cards/diamonds/Diamonds-K.png",
+          "role": "tableau",
+          "portrait": {
+            "x": 711,
+            "y": 828,
+            "scale": 0.62,
+            "depth": 1,
+            "r": -1.309
+          },
+          "landscape": {
+            "x": 1100.6,
+            "y": 478.8,
+            "scale": 0.52,
+            "depth": 1,
+            "r": -1.309
+          }
+        }
+      ],
+      "telon": {
+        "portrait": {
+          "x": 440,
+          "y": 1497,
+          "scale": 2.5,
+          "depth": 9
+        },
+        "landscape": {
+          "x": 880,
+          "y": 896,
+          "scale": 2.5,
+          "depth": 9
+        }
+      }
+    }
+  },
+  "end_card": {
+    "title": "You Win!",
+    "cta_text": "PLAY NOW",
+    "lose_title": "So Close!",
+    "lose_cta_text": "TRY AGAIN",
+    "store_url": "https://play.google.com/store/apps/details?id=com.brightpointstudios.apps.castle_royal",
+    "apple_url": "https://apps.apple.com/in/app/solitaire-castle-royal/id6753009880",
+    "google_url": "https://play.google.com/store/apps/details?id=com.brightpointstudios.apps.castle_royal",
+    "cta_image": "engine/assets/cta/play_now.webp",
+    "title_pos": {
+      "portrait": {
+        "x": 540,
+        "y": 480,
+        "size": 168
+      }
+    },
+    "cta_pos": {
+      "portrait": {
+        "x": 540,
+        "y": 1382,
+        "scale": 0.9
+      }
+    }
+  },
+  "network": "applovin",
+  "logo": {
+    "image": "engine/assets/logo/solitaire_logo.webp",
+    "portrait": {
+      "x": 160,
+      "y": 89,
+      "scale": 0.9
+    },
+    "landscape": {
+      "x": 108,
+      "y": 62,
+      "scale": 0.62
+    }
+  }
+}

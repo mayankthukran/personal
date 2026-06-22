@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:,">
+<title>Playable Engine — Scenes Window</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#11131c; --surface:#181b29; --surface2:#222740; --border:#2c3350;
+  --text:#e6e8f0; --dim:#8b92ad; --accent:#4dd0ff; --accent2:#7b5cff;
+  --ok:#2ed573; --warn:#ffb84d; --danger:#ff5470;
+}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);height:100vh;overflow:hidden;display:flex;flex-direction:column}
+#toolbar{display:flex;align-items:center;gap:8px;padding:8px 12px;background:var(--surface);border-bottom:1px solid var(--border);flex-wrap:wrap;flex-shrink:0}
+#toolbar .title{font-weight:700;color:var(--accent);margin-right:8px}
+#toolbar .sep{width:1px;height:22px;background:var(--border);margin:0 4px}
+#toolbar .spacer{flex:1}
+button{padding:6px 12px;border:1px solid var(--border);border-radius:6px;background:var(--surface2);color:var(--text);cursor:pointer;font-size:13px;white-space:nowrap}
+button:hover{background:#2c3358}
+button.primary{background:var(--accent2);border-color:var(--accent2)}
+button.primary:hover{filter:brightness(1.1)}
+button.tab{background:transparent}
+button.tab.active{background:var(--accent2);border-color:var(--accent2)}
+.chip{font-size:11px;color:var(--dim)}
+#main{display:flex;flex:1;overflow:hidden}
+#stage{flex:1;position:relative;overflow:hidden;background:#0a0b12;display:flex;align-items:center;justify-content:center}
+#scene-canvas{background:#000;box-shadow:0 0 0 1px var(--border),0 10px 40px #0008;touch-action:none}
+#hint{position:absolute;top:10px;left:12px;font-size:11px;color:var(--dim)}
+#sidebar{width:380px;flex-shrink:0;background:var(--surface);border-left:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden}
+.section{border-bottom:1px solid var(--border);padding:10px 12px}
+.section h3{font-size:12px;text-transform:uppercase;letter-spacing:.5px;color:var(--dim);margin-bottom:8px}
+#inspector .row{display:flex;align-items:center;gap:6px;margin-bottom:6px}
+#inspector label{width:62px;font-size:12px;color:var(--dim)}
+#inspector input,#inspector select{flex:1;background:var(--bg);border:1px solid var(--border);border-radius:4px;color:var(--text);padding:4px 6px;font-size:12px}
+#inspector .who{font-size:13px;color:var(--accent);margin-bottom:8px;word-break:break-all}
+#json-wrap{flex:1;display:flex;flex-direction:column;min-height:0}
+#json{flex:1;width:100%;background:#0c0e16;color:#cdd3e6;border:none;border-top:1px solid var(--border);font-family:'SF Mono',Menlo,monospace;font-size:11px;padding:10px;resize:none;white-space:pre;overflow:auto}
+#progress{padding:8px 12px;font-size:12px;color:var(--dim);background:var(--surface);border-top:1px solid var(--border);min-height:34px}
+#progress.ok{color:var(--ok)} #progress.warn{color:var(--warn)} #progress.err{color:var(--danger)}
+input[type=file]{display:none}
+</style>
+</head>
+<body>
+<div id="toolbar">
+  <span class="title">⚙ Playable Engine</span>
+  <span class="chip">Scene:</span>
+  <span id="scene-tabs"></span>
+  <span class="sep"></span>
+  <button id="btn-orient">Portrait ⇄</button>
+  <span class="sep"></span>
+  <label style="font-size:12px;color:var(--text);display:inline-flex;align-items:center;gap:5px;cursor:pointer"><input type="checkbox" id="chk-difficulty" style="cursor:pointer"> Difficulty scene</label>
+  <span class="sep"></span>
+  <button id="btn-undo" title="Undo (⌘Z)" disabled>↶ Undo</button>
+  <button id="btn-redo" title="Redo (⌘⇧Z)" disabled>↷ Redo</button>
+  <span class="sep"></span>
+  <button id="btn-add-item" title="Add an image or a card to this scene">＋ Add item</button>
+  <input type="file" id="file-bg" accept="image/*">
+  <button id="btn-add-talon" title="Add a talon deck + base card to this level (no brown board)">＋ Talon</button>
+  <span class="sep"></span>
+  <label class="primary" for="file-json" style="display:inline-block;padding:6px 12px;border-radius:6px;cursor:pointer;background:var(--surface2);border:1px solid var(--border)">Load JSON</label>
+  <input type="file" id="file-json" accept="application/json,.json">
+  <button id="btn-save">Save JSON</button>
+  <button id="btn-reload">Reload Sample</button>
+  <span class="spacer"></span>
+  <button id="btn-test" style="background:var(--ok);border-color:var(--ok);color:#06210f;font-weight:700">▶ Live Test</button>
+  <span class="chip">Network:</span>
+  <select id="net-select" title="Ad network" style="padding:6px 8px;border-radius:6px;background:var(--surface2);color:var(--text);border:1px solid var(--border);font-size:13px">
+    <option value="applovin">AppLovin</option>
+    <option value="google">Google</option>
+    <option value="meta">Meta</option>
+    <option value="unityads">Unity Ads</option>
+  </select>
+  <button id="btn-generate" class="primary">⬇ Build (inline+split)</button>
+  <button id="btn-build-all">Build all networks</button>
+</div>
+<div id="main">
+  <div id="stage">
+    <div id="hint">Drag to move · click to select · shift-click & box-select for multiple</div>
+    <canvas id="scene-canvas"></canvas>
+  </div>
+  <div id="sidebar">
+    <div class="section" id="inspector">
+      <h3>Inspector</h3>
+      <div class="who" id="insp-who">Nothing selected</div>
+      <div id="insp-fields"></div>
+    </div>
+    <div class="section" style="display:flex;align-items:center;justify-content:space-between">
+      <h3 style="margin:0">JSON Spec</h3>
+      <button id="btn-apply" style="padding:3px 10px">Apply JSON →</button>
+    </div>
+    <div id="json-wrap"><textarea id="json" spellcheck="false"></textarea></div>
+  </div>
+</div>
+<div id="progress">Ready.</div>
+
+<script src="src/zip.js?v=53"></script>
+<script src="src/obstacle.js?v=53"></script>
+<script src="src/schema.js?v=53"></script>
+<script src="src/assembler.js?v=53"></script>
+<script src="src/editor.js?v=53"></script>
+</body>
+</html>
