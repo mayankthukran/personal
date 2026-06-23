@@ -122,6 +122,7 @@ class End extends Phaser.Scene {
     const layers = (config.background && config.background.layers) || [];
     const W = this.scale.width, H = this.scale.height;
     const isLandscape = W > H;
+    this._ctaImgs = [];   // CTA button images on this scene (for the hand pointer)
     layers.forEach((L, i) => {
       if (window.layerVisibleInScene && !window.layerVisibleInScene(L, sceneId)) return;
       let key = L.key || ('bg_' + (L.id != null ? L.id : i));
@@ -138,8 +139,48 @@ class End extends Phaser.Scene {
         if (p.r) img.setRotation(p.r);
       }
       if (window.applyItemAnim) window.applyItemAnim(this, img, window.layerSceneAnim ? window.layerSceneAnim(L, sceneId) : null);
-      if (L.cta) { img.setInteractive({ useHandCursor: true }); img.on('pointerdown', () => this.clickOut && this.clickOut()); }
+      if (L.cta) {
+        img.setInteractive({ useHandCursor: true });
+        img.on('pointerdown', () => this.clickOut && this.clickOut());
+        this._ctaImgs.push({ img, L });
+      }
     });
+  }
+
+  // Build the hand-tap animation from hand_000..hand_004 if not already created.
+  _ensureHandAnimation() {
+    if (this.anims.exists('hand_animation')) return true;
+    const frames = [];
+    for (let i = 0; i <= 10; i++) {
+      const key = 'hand_' + String(i).padStart(3, '0');
+      if (this.textures.exists(key)) frames.push({ key });
+    }
+    if (frames.length < 2) return false;
+    this.anims.create({ key: 'hand_animation', frames, frameRate: 10, repeat: 2 });
+    return true;
+  }
+
+  // Animated hand pointer that taps a CTA button (3 cycles → hide → re-show),
+  // the same loop as the gameplay hint. Enabled per CTA via its "show hand" flag.
+  _attachCtaHand(targetImg) {
+    if (!targetImg || !this.textures.exists('hand_000') || !this._ensureHandAnimation()) return;
+    const hand = this.add.sprite(0, 0, 'hand_000')
+      .setOrigin(0.3, 0.0).setScale(0.7)
+      .setDepth((targetImg.depth || 90) + 1).setVisible(false);
+    this._ctaHand = hand;
+    const show = () => {
+      if (!hand.scene) return;
+      // Same offset as the gameplay hand on cards: slightly right + above centre.
+      hand.setPosition(targetImg.x + 15, targetImg.y - 40);
+      hand.setVisible(true);
+      hand.play('hand_animation');
+    };
+    hand.on('animationcomplete', (anim) => {
+      if (!anim || anim.key !== 'hand_animation') return;
+      hand.setVisible(false);
+      this.time.delayedCall(1500, show);
+    });
+    this.time.delayedCall(900, show);   // first tap after the end card settles
   }
 
   // Minimal end card for engine builds — mirrors the editor's End scene: main_bg
@@ -165,25 +206,18 @@ class End extends Phaser.Scene {
       if (window.applyItemAnim) window.applyItemAnim(this, this.logo, logoPos.anim);
     }
 
-    // Win title + CTA — both read end_card.title_pos / cta_pos from the editor.
+    // Win title — read from end_card.title_pos in the editor.
     this.createWinTitle();
-    this.createCTA({});
 
-    // createCTA leaves an image CTA at alpha 0 (the themed flow fades it in during
-    // the celebration we skip), so reveal it here and add a gentle pulse.
-    if (this.ctaButton) {
-      const baseScale = this.ctaButton.scaleX;
-      this.tweens.add({
-        targets: this.ctaButton, alpha: 1, duration: 400, delay: 300, ease: 'Power2',
-        onComplete: () => {
-          if (window.gameEnd) window.gameEnd();
-          this.tweens.add({ targets: this.ctaButton, scale: { from: baseScale, to: baseScale * 1.06 },
-            duration: 650, yoyo: true, repeat: -1, ease: 'Sine.easeInOut' });
-        },
-      });
-    } else if (window.gameEnd) {
-      this.time.delayedCall(900, () => window.gameEnd());
-    }
+    // No built-in CTA button. Place a "CTA button" item on the End scene for a
+    // tappable store button (rendered by renderBackgroundLayers above). The whole
+    // end card is still tappable as a fallback, and gameEnd fires shortly after.
+    this.input.on('pointerdown', () => this.clickOut && this.clickOut());
+    if (window.gameEnd) this.time.delayedCall(900, () => window.gameEnd());
+
+    // Hand pointer on a CTA button that has "show hand pointer" enabled.
+    const handCta = (this._ctaImgs || []).find(c => c.L.hand);
+    if (handCta) this._attachCtaHand(handCta.img);
 
     // Rebuild on orientation flip so positions track the new layout. off→on so
     // the listener stays single across restarts (the scale manager is global).

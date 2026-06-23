@@ -1627,10 +1627,19 @@ class Game extends Phaser.Scene {
       this.anims.create({
         key: 'hand_animation',
         frames: handFrames,
-        frameRate: 12,
-        repeat: -1,
+        frameRate: 8,
+        repeat: 2,   // 3 tap cycles total, then auto-hide (handled below)
       });
     }
+
+    // After the 3 tap cycles finish, hide the hand and re-arm the idle timer so
+    // it pops again after a pause — the Wags ads' show → animate → hide → wait →
+    // show loop. (A real tap hides it early via hideHandPointer + re-arms too.)
+    this.handSprite.on('animationcomplete', (anim) => {
+      if (!anim || anim.key !== 'hand_animation') return;
+      this.hideHandPointer();
+      if (!this._ended) this.startHandPointerTimer();
+    });
 
     this.handPointerTimer = null;
   }
