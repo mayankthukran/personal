@@ -176,6 +176,7 @@
     if (assets.telon) images.telon = assets.telon;
     if (assets.logo) images.logo = assets.logo;
     if (assets.play_button) images.play_button = assets.play_button;
+    Object.assign(images, assets.handFrames || {});
     Object.assign(images, assets.obstacleImages || {});
     Object.entries(assets.options || {}).forEach(([id, uri]) => { images['diff_' + id] = uri; });
     Object.entries(assets.bgLayers || {}).forEach(([key, uri]) => { images[key] = uri; });
@@ -340,6 +341,8 @@
       if (L.layouts) entry.layouts = L.layouts;
       // CTA buttons are interactive images that open the store URL (openCTA).
       if (L.cta) entry.cta = true;
+      // Show an animated hand pointer tapping this CTA (end scene).
+      if (L.hand) entry.hand = true;
       if (L.image) {
         log(`Embedding bg layer ${i + 1}/${layers.length}…`);
         assets.bgLayers[key] = await embedImage(L.image, { compress: o.compress, quality: o.quality, maxH: 0 });
@@ -378,6 +381,18 @@
     if (ec0.cta_image) {
       log('Embedding CTA button…');
       assets.play_button = await embedImage(ec0.cta_image, { compress: o.compress, quality: o.quality, maxH: 300 });
+    }
+
+    // Hand-pointer frames — the animated tap-hint that points at the next
+    // playable card (idle hint), exactly like the Wags ads. GameScene plays the
+    // 'hand_animation' built from hand_000..hand_004.
+    assets.handFrames = {};
+    for (let i = 0; i <= 4; i++) {
+      const key = 'hand_' + String(i).padStart(3, '0');
+      try {
+        assets.handFrames[key] = await embedImage('engine/assets/hand/' + key + '.webp',
+          { compress: o.compress, quality: o.quality, maxH: 300 });
+      } catch (e) { console.warn('hand frame failed:', key, e.message); }
     }
 
     // Obstacle art — swap card faces / add overlays per obstacle card. Each

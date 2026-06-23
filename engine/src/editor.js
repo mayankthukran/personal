@@ -54,6 +54,7 @@
 
   function setSpec(spec) {
     state.spec = PE.schema.withDefaults(spec);
+    dedupeLayerIds();   // repair any duplicate background-layer ids from older specs
     const ns = $('#net-select'); if (ns) ns.value = state.spec.network || 'applovin';
     // Difficulty = a start scene with more than one option (Easy/Medium/Hard…).
     const ss = state.spec.start_scene;
@@ -305,19 +306,8 @@
           c.restore();
         },
       });
-      // CTA button (PLAY NOW image, or a drawn green button)
-      const cp = (ec.cta_pos || (ec.cta_pos = {}))[o] || (ec.cta_pos[o] = { x: W / 2, y: Math.round(H * 0.72), scale: o === 'landscape' ? 0.6 : 0.9 });
-      const ctaImg = ec.cta_image ? getImg(ec.cta_image) : null;
-      const csc = cp.scale != null ? cp.scale : 0.8;
-      const cw = (ctaImg ? ctaImg.width : 480) * csc, ch = (ctaImg ? ctaImg.height : 200) * csc;
-      list.push({
-        id: 'end_cta', kind: 'endcta', label: 'CTA button', depth: 90, pos: cp,
-        get x() { return cp.x; }, get y() { return cp.y; }, w: cw, h: ch,
-        draw(c) {
-          if (ctaImg) c.drawImage(ctaImg, cp.x - cw / 2, cp.y - ch / 2, cw, ch);
-          else drawBadge(c, cp.x, cp.y, 480 * csc, 200 * csc, '#2ed573', ec.cta_text || 'PLAY NOW');
-        },
-      });
+      // No built-in end-card CTA button — add a "CTA button" via Add item instead
+      // (it has image/position/scene/animation controls and opens the store URL).
       return list;
     }
 
@@ -781,6 +771,10 @@
         n.style.cssText = 'font-size:11px;color:var(--dim);margin:2px 0 6px;line-height:1.35';
         n.textContent = 'Tapping opens the store: iOS → Apple URL, Android → Store URL. Shared by every CTA button + end-card CTA.';
         fields.appendChild(n);
+        // Animated hand pointer tapping this CTA on the end scene.
+        fields.appendChild(checkRow('Show hand pointer', () => !!it.layer.hand, (v) => {
+          if (v) it.layer.hand = true; else delete it.layer.hand;
+        }));
       }
       // Animation is per scene — set on this scene's layout, so it plays only here.
       appendAnimFields(layerSceneLayout(it.layer, state.scene));
@@ -1030,13 +1024,34 @@
   // (iOS → Apple URL, Android → Google URL, same as the Wags ads). Stored as a
   // background-layer image with cta:true, so it gets all the scene-scoping,
   // per-scene position/size and animation controls images have.
+  // A background-layer id that isn't already taken (prefix + lowest free index),
+  // so adding/removing layers never produces a duplicate id (and duplicate label).
+  function nextLayerId(prefix) {
+    const used = new Set(((state.spec.background || {}).layers || []).map(l => l.id));
+    let n = 0; while (used.has(prefix + n)) n++;
+    return prefix + n;
+  }
+  // Repair duplicate/missing background-layer ids (older specs could collide),
+  // so each layer has a unique inspector name + texture key.
+  function dedupeLayerIds() {
+    const layers = ((state.spec || {}).background || {}).layers || [];
+    const seen = new Set();
+    layers.forEach(L => {
+      const prefix = L.cta ? 'cta' : 'bg';
+      if (L.id == null || seen.has(L.id)) {
+        let n = 0; while (seen.has(prefix + n)) n++;
+        L.id = prefix + n;
+      }
+      seen.add(L.id);
+    });
+  }
   function addCtaButton() {
     const spec = state.spec; if (!spec) { status('Load a spec first.', 'err'); return; }
     spec.background = spec.background || { color: '#142a6c', layers: [] };
     spec.background.layers = spec.background.layers || [];
     spec.end_card = spec.end_card || {};
     const pw = spec.canvas.portrait, lw = spec.canvas.landscape;
-    const id = 'cta' + spec.background.layers.length;
+    const id = nextLayerId('cta');
     spec.background.layers.push({
       id, image: 'engine/assets/cta/play_now.webp', fit: 'none', depth: 90, cta: true,
       portrait: { x: Math.round(pw.width / 2), y: Math.round(pw.height * 0.82), scale: 0.9 },
@@ -1185,7 +1200,7 @@
         try {
           const spec = state.spec;
           spec.background.layers = spec.background.layers || [];
-          const id = 'bg' + spec.background.layers.length;
+          const id = nextLayerId('bg');
           const pw = spec.canvas.portrait, lw = spec.canvas.landscape;
           const ps = +((pw.width * 0.4) / probe.width).toFixed(3);
           const ls = +((lw.width * 0.4) / probe.width).toFixed(3);
