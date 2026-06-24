@@ -171,7 +171,7 @@ class End extends Phaser.Scene {
     const show = () => {
       if (!hand.scene) return;
       // Same offset as the gameplay hand on cards: slightly right + above centre.
-      hand.setPosition(targetImg.x + 15, targetImg.y - 40);
+      hand.setPosition(targetImg.x + 40, targetImg.y - 40);
       hand.setVisible(true);
       hand.play('hand_animation');
     };

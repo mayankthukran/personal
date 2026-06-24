@@ -817,8 +817,70 @@
       fields.appendChild(numRow('Scale', it.pos, 'scale', 0.001));
       if (it.kind === 'talon') {
         fields.appendChild(numRow('Depth', it.pos, 'depth'));
-        // Wags-style talon: no base graphic (no telon pile, no base board art).
-        // The talon is just the active card; only the card-back art (used by the
+        // Talon card values live in lv.talon.sequence: the LAST element is the
+        // face-up card on the base; the rest is the stock (deck), revealed from
+        // 2nd-from-last down to first. The editor presents that as: a base card
+        // value, and a deck count + deck values ordered top → bottom.
+        const lvT = state.spec.levels[state.scene];
+        if (lvT) {
+          lvT.talon = lvT.talon || { sequence: [] };
+          if (!Array.isArray(lvT.talon.sequence)) lvT.talon.sequence = [];
+          const SUITS = ['hearts', 'clubs', 'diamonds', 'spades'];
+          const RANKS = ['a', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'j', 'q', 'k'];
+          const facePicker = (getFace, setFace) => {
+            const cur = (getFace() || 'hearts_a').split('_');
+            const wrap = document.createElement('div'); wrap.style.cssText = 'display:flex;gap:4px;flex:1';
+            const suit = document.createElement('select'); suit.style.flex = '1';
+            SUITS.forEach(s => { const o = document.createElement('option'); o.value = s; o.textContent = s; suit.appendChild(o); });
+            suit.value = SUITS.includes(cur[0]) ? cur[0] : 'hearts';
+            const rank = document.createElement('select'); rank.style.flex = '1';
+            RANKS.forEach(r => { const o = document.createElement('option'); o.value = r; o.textContent = r.toUpperCase(); rank.appendChild(o); });
+            rank.value = RANKS.includes(cur[1]) ? cur[1] : 'a';
+            const apply = () => { setFace(suit.value + '_' + rank.value); render(); inspector(); syncJSON(); };
+            suit.onchange = apply; rank.onchange = apply;
+            wrap.appendChild(suit); wrap.appendChild(rank); return wrap;
+          };
+          const tip = (txt) => { const d = document.createElement('div'); d.style.cssText = 'font-size:11px;color:var(--dim);margin:2px 0 6px;line-height:1.35'; d.textContent = txt; return d; };
+
+          if (it.id === 'talon:base') {
+            fields.appendChild(row('Card value', () => facePicker(
+              () => { const s = lvT.talon.sequence; return s.length ? s[s.length - 1] : 'hearts_a'; },
+              (f) => { const s = lvT.talon.sequence; if (s.length) s[s.length - 1] = f; else lvT.talon.sequence = [f]; }
+            )));
+            fields.appendChild(tip('The face-up card currently sitting on the talon (waste).'));
+          } else if (it.id === 'talon:deck') {
+            const deckTopToBottom = () => lvT.talon.sequence.slice(0, -1).reverse();
+            const setDeck = (arr) => {
+              const s = lvT.talon.sequence;
+              const base = s.length ? s[s.length - 1] : 'hearts_a';
+              lvT.talon.sequence = arr.slice().reverse().concat([base]);
+            };
+            fields.appendChild(row('Deck cards', () => {
+              const i = document.createElement('input'); i.type = 'number'; i.min = 0; i.step = 1;
+              i.value = Math.max(0, lvT.talon.sequence.length - 1);
+              i.onchange = () => {
+                const n = Math.max(0, parseInt(i.value, 10) || 0);
+                let arr = deckTopToBottom();
+                while (arr.length < n) arr.push('hearts_a');
+                arr = arr.slice(0, n);
+                setDeck(arr); render(); inspector(); syncJSON();
+              };
+              return i;
+            }));
+            fields.appendChild(row('Values', () => {
+              const i = document.createElement('input');
+              i.value = deckTopToBottom().join(', ');
+              i.placeholder = 'top→bottom, e.g. diamonds_2, clubs_3';
+              i.oninput = () => {
+                const arr = i.value.split(',').map(s => s.trim().toLowerCase()).filter(Boolean);
+                setDeck(arr); render(); syncJSON();
+              };
+              return i;
+            }));
+            fields.appendChild(tip('Stock pile, first (top) → last (bottom). Faces like diamonds_a, clubs_10, spades_k. The deck count above resizes the list.'));
+          }
+        }
+        // Wags-style talon: no base graphic — only the card-back art (used by the
         // deck / active card) is configurable.
         fields.appendChild(replaceImageRow('Card back', (uri) => {
           state.spec.deck = state.spec.deck || {};
