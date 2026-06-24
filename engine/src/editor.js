@@ -1107,6 +1107,141 @@
       seen.add(L.id);
     });
   }
+  // Convert a level-designer JSON (CardPosition / DependedOn / NumberOfDeckCards)
+  // into an engine level — ports the conversion in the-one-ring convert_level.py:
+  // auto-fit centred coords to the canvas, depth from the dependency graph, and a
+  // solvable ±1 face chain along a topological play order.
+  function convertDesignerLevel(data) {
+    const DESIGNER_CW = 90, ASSET_CW = 296;
+    const RANKS = ['a', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'j', 'q', 'k'];
+    const SUITS = ['hearts', 'clubs', 'diamonds', 'spades'];
+    const cwP = state.spec.canvas.portrait, cwL = state.spec.canvas.landscape;
+    const positions = (data.CardPosition || []).map(s => {
+      const m = /\(\s*([-\d.]+)\s*,\s*([-\d.]+)\s*\)/.exec(s);
+      return m ? [parseFloat(m[1]), parseFloat(m[2])] : [0, 0];
+    });
+    const n = positions.length;
+    if (!n) throw new Error('no CardPosition entries');
+    const rotations = data.CardRotation || [];
+    const deps = {};
+    (data.DependedOn || []).forEach(e => { deps[e.index] = e.depend || []; });
+
+    const autoScale = (cw, ch, areaFrac, maxCardScale) => {
+      const xs = positions.map(p => p[0]), ys = positions.map(p => p[1]);
+      const minX = Math.min(...xs), maxX = Math.max(...xs), minY = Math.min(...ys), maxY = Math.max(...ys);
+      const srcW = maxX - minX, srcH = maxY - minY, srcCx = (maxX + minX) / 2, srcCy = (maxY + minY) / 2;
+      const targetW = cw * 0.80, targetH = ch * areaFrac * 0.72, targetCy = ch * areaFrac * 0.55;
+      let scale = (srcW > 0 && srcH > 0) ? Math.min(targetW / srcW, targetH / srcH)
+                : srcW > 0 ? targetW / srcW : srcH > 0 ? targetH / srcH : 1;
+      if (maxCardScale != null) scale = Math.min(scale, maxCardScale * ASSET_CW / DESIGNER_CW);
+      const pts = positions.map(([x, y]) => [Math.round((x - srcCx) * scale + cw / 2), Math.round((srcCy - y) * scale + targetCy)]);
+      return { pts, scale };
+    };
+    const P = autoScale(cwP.width, cwP.height, 0.70, null);
+    const L = autoScale(cwL.width, cwL.height, 0.70, 0.50);
+    const pCardScale = Math.max(0.30, +(P.scale * DESIGNER_CW / ASSET_CW).toFixed(3));
+    const lCardScale = Math.max(0.22, +(L.scale * DESIGNER_CW / ASSET_CW).toFixed(3));
+
+    // Depth from dependency graph: a card covered by others renders below them.
+    const dc = {};
+    const rawDepth = (i, guard) => {
+      if (dc[i] != null) return dc[i];
+      if (guard && guard.has(i)) return 0;
+      const g = guard || new Set(); g.add(i);
+      const b = deps[i] || [];
+      const d = b.length ? Math.max(...b.map(x => rawDepth(x, g))) + 1 : 0;
+      return (dc[i] = d);
+    };
+    for (let i = 0; i < n; i++) rawDepth(i);
+    const maxD = Math.max(0, ...Object.values(dc));
+    const depthOf = i => maxD - (dc[i] || 0) + 1;
+
+    // Topological play order (a card appears only after its blockers).
+    const played = new Set(), order = [];
+    while (order.length < n) {
+      let progressed = false;
+      for (let i = 0; i < n; i++) {
+        if (played.has(i)) continue;
+        if ((deps[i] || []).every(x => played.has(x))) { order.push(i); played.add(i); progressed = true; }
+      }
+      if (!progressed) { for (let i = 0; i < n; i++) if (!played.has(i)) { order.push(i); played.add(i); } }
+    }
+
+    // ±1 rank chain along the play order so the level is solvable in that order.
+    const talonRank = 0;
+    const rankOf = new Array(n).fill(0);
+    let cur = talonRank, dir = 1, steps = 0;
+    order.forEach(idx => {
+      cur = (cur + dir + 13) % 13; rankOf[idx] = cur;
+      if (++steps >= 5) { dir = -dir; steps = 0; }
+    });
+
+    let suit = 0;
+    const faceAt = (rank) => SUITS[suit++ % 4] + '_' + RANKS[rank];
+    const cards = [];
+    for (let i = 0; i < n; i++) {
+      const face = faceAt(rankOf[i]);
+      let deg = rotations[i] || 0; if (deg > 180) deg -= 360;
+      const r = deg * Math.PI / 180;
+      cards.push({
+        id: 's' + i, face, asset: PE.schema.faceToAsset(face), role: 'tableau',
+        portrait: { x: P.pts[i][0], y: P.pts[i][1], scale: pCardScale, depth: depthOf(i), r },
+        landscape: { x: L.pts[i][0], y: L.pts[i][1], scale: lCardScale, depth: depthOf(i), r },
+      });
+    }
+
+    // Talon: base (current) card + a ±1 stock of NumberOfDeckCards.
+    const numDeck = data.NumberOfDeckCards || 0;
+    const baseFace = faceAt(talonRank);
+    const deckFaces = []; let d = talonRank;
+    for (let k = 0; k < numDeck; k++) { d = (d + (k % 2 ? -1 : 1) + 13) % 13; deckFaces.push(faceAt(d)); }
+    const sequence = deckFaces.slice().reverse().concat([baseFace]);
+
+    const dependencies = {};
+    for (let i = 0; i < n; i++) { const b = deps[i] || []; if (b.length) dependencies['s' + i] = b.map(x => 's' + x); }
+
+    return {
+      deal: { style: 'deal_curve', stagger: 60, duration: 450 },
+      animation: { default: { curve_height: 150, first_duration: 400, second_duration: 300 } },
+      game_flow: { mode: 'dependency', dependencies },
+      talon: {
+        sequence,
+        base: { portrait: { x: Math.round(cwP.width * 0.56), y: Math.round(cwP.height * 0.78), scale: 1.1, depth: 25 },
+                landscape: { x: Math.round(cwL.width * 0.56), y: Math.round(cwL.height * 0.83), scale: 1.0, depth: 25 } },
+        deck: { portrait: { x: Math.round(cwP.width * 0.31), y: Math.round(cwP.height * 0.78), scale: 1.1, depth: 26 },
+                landscape: { x: Math.round(cwL.width * 0.42), y: Math.round(cwL.height * 0.83), scale: 1.0, depth: 26 } },
+      },
+      cards,
+    };
+  }
+
+  // Load a level layout from JSON into the CURRENT level scene. Accepts the
+  // level-designer format (data.CardPosition…), a raw engine level ({cards…}),
+  // or a full engine spec ({levels:{…}} → first level).
+  function loadLevelIntoScene(obj) {
+    const spec = state.spec; if (!spec) { status('Load a spec first.', 'err'); return; }
+    if (!spec.levels || !spec.levels[state.scene]) {
+      status('Open a level scene first (Load level does not apply to Start/End).', 'err'); return;
+    }
+    let level;
+    try {
+      const designer = (obj && obj.data && obj.data.CardPosition) ? obj.data
+                      : (obj && obj.CardPosition) ? obj : null;
+      if (designer) level = convertDesignerLevel(designer);
+      else if (obj && Array.isArray(obj.cards)) level = obj;
+      else if (obj && obj.levels) level = Object.values(obj.levels)[0];
+      else { status('Unrecognized level JSON (no CardPosition, cards, or levels).', 'err'); return; }
+    } catch (e) { status('Load level failed: ' + e.message, 'err'); return; }
+    if (!level || !Array.isArray(level.cards) || !level.cards.length) {
+      status('That JSON has no cards to load.', 'err'); return;
+    }
+    level.cards.forEach(c => { if (!c.asset && c.face) c.asset = PE.schema.faceToAsset(c.face); });
+    spec.levels[state.scene] = level;
+    if (level.game_flow && level.game_flow.dependencies) refreshFlowFromDeps(level);
+    selectOnly(null); buildTabs(); render(); inspector(); syncJSON();
+    status('✓ Loaded level into "' + state.scene + '" — ' + level.cards.length + ' cards.', 'ok');
+  }
+
   function addCtaButton() {
     const spec = state.spec; if (!spec) { status('Load a spec first.', 'err'); return; }
     spec.background = spec.background || { color: '#142a6c', layers: [] };
@@ -1231,6 +1366,20 @@
   $('#btn-redo').onclick = redo;
   $('#btn-add-talon').onclick = addTalon;
   $('#btn-add-item').onclick = (e) => openAddMenu(e.currentTarget);
+  $('#btn-load-level').onclick = () => {
+    if (!state.spec || !state.spec.levels || !state.spec.levels[state.scene]) {
+      status('Open a level scene first (Load level does not apply to Start/End).', 'err'); return;
+    }
+    $('#file-level').click();
+  };
+  $('#file-level').onchange = (e) => {
+    const f = e.target.files[0]; if (!f) return;
+    const fr = new FileReader();
+    fr.onerror = () => status('Could not read the file.', 'err');
+    fr.onload = () => { try { loadLevelIntoScene(JSON.parse(fr.result)); } catch (err) { status('Bad JSON: ' + err.message, 'err'); } };
+    fr.readAsText(f);
+    e.target.value = '';
+  };
   window.addEventListener('keydown', (e) => {
     const tag = (e.target && e.target.tagName || '').toLowerCase();
     if (tag === 'input' || tag === 'textarea' || tag === 'select') return;  // leave native field undo alone

@@ -290,12 +290,18 @@
               "x": 960,
               "y": 886,
               "scale": 0.6
+            },
+            "anim": {
+              "type": "pulse",
+              "duration": 1500,
+              "amount": 1.1
             }
           }
         },
         "scenes": [
           "end"
-        ]
+        ],
+        "hand": true
       }
     ]
   },
@@ -544,6 +550,8 @@
       },
       "talon": {
         "sequence": [
+          "clubs_10",
+          "diamonds_a",
           "diamonds_a"
         ],
         "base": {
